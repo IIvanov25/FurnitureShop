@@ -9,25 +9,27 @@ public class ProductService : IProductService
         _productRepo = productRepo;
     }
 
-    Product IProductService.GetProductById(int id)
-    {
-        return _productRepo.
-    }
-    void IProductService.GetProductByName(string name)
-    {
-
-    }
-    void IProductService.AddProduct(Product product)
+    public void AddProduct(Product product)
     {
         throw new NotImplementedException();
     }
 
-    List<Product> IProductService.GetAllProducts(Product products)
+    public List<Product> GetAllProducts(Product products)
     {
         throw new NotImplementedException();
     }
 
-    Product IProductService.RemoveProductById(int id)
+    public Product GetProductById(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Product GetProductByName(string name)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Product RemoveProductById(int id)
     {
         throw new NotImplementedException();
     }

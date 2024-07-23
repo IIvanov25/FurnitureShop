@@ -24,7 +24,7 @@ namespace FurnitureShopNew.Controllers
             }
 
             _productService.AddProduct(product);
-            return CreatedAtAction();
+            return Ok();
         }
 
         [HttpDelete("{id}")]
@@ -36,23 +36,23 @@ namespace FurnitureShopNew.Controllers
                 return NotFound();
             }
 
-            _productService.DeleteProducts(id);
+            //_productService.DeleteProducts(id);
             return NoContent();
         }
 
         [HttpGet]
         public IActionResult GetAllOrders()
         {
-            var products = _productService.GetAllProducts();
-            return Ok(products);
+            //var products = _productService.GetAllProducts();
+            return Ok();
         }
 
         [HttpGet("user/{userId}")]
         public IActionResult GetAllOrdersByUser(int userId)
         {
             var user = new User { UserId = userId }; 
-            var orders = _productService.GetAllProductsByUser(user);
-            return Ok(orders);
+            //var orders = _productService.GetAllProductsByUser(user);
+            return Ok();
         }
 
         [HttpGet("{id}")]
@@ -81,7 +81,7 @@ namespace FurnitureShopNew.Controllers
                 return NotFound();
             }
 
-            _productService.UpdateProducts(product);
+            //_productService.UpdateProducts(product);
             return NoContent();
         }
     }
