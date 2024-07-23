@@ -1,42 +1,44 @@
-﻿using FurnitureShopNew.Models;
+﻿using FurnitureShopNew;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 public class OrdersRepo : IOrdersRepo
 {
-    private readonly string _connectionString;
-
-    public OrdersRepo(string connectionString)
+    private readonly ShopDbContext _context;
+    public OrdersRepo(ShopDbContext context)
     {
-        _connectionString = connectionString;
+        _context = context;
     }
-    public IEnumerable<Orders> GetAllOrders()
+    public void AddOrders(Order orders)
     {
-        var orders = new List<Orders>();
-        string query = "select OrderID, CustomerID, OrderDate, TotalAmount from Orders";
-
-        using (SqlConnection connection = new SqlConnection(_connectionString))
-        {
-            SqlCommand command = new SqlCommand(query, connection);
-            connection.Open();
-            using (SqlDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    var order = new Orders();
-                    {
-                        order.OrderId = reader.GetInt32(0);
-                        order.CustomerId = reader.GetInt32(1);
-                        order.OrderDate = reader.GetDateTime(2);
-                        order.TotalAmount = reader.GetDecimal(3);
-                    };
-                    orders.Add(order);
-                }
-            }
-        }
-        return orders;
+        _context.Orders.Add(orders);
+        _context.SaveChanges();
+    }
+    public void DeleteOrders(int ordersId)
+    {
+        var orderToRemove = _context.Orders.First(o => o.OrderId == ordersId);
+        _context.Remove(orderToRemove);
+        _context.SaveChanges();
+    }
+    public IEnumerable<Order> GetAllOrders()
+    {
+        return _context.Orders.ToList();
+    }
+    public List<Order> GetAllOrdersByUser(User customer)
+    {
+        return _context.Orders.Where(o => o.UserId == customer.UserId).ToList();
+    }
+    public Order GetOrderById(int orderId)
+    {
+        return _context.Orders.Single(c => c.OrderId == orderId);
+    }
+    public void UpdateOrders(Order order)
+    {
+        _context.Orders.Update(order);
+        _context.SaveChanges();
     }
 }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,13 +7,43 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\CustomersController.cs" />
+    <Compile Remove="Models\Enums\FurnitureTypeCategories.cs" />
+    <Compile Remove="Repositories\CategorriesRepo.cs" />
+    <Compile Remove="Repositories\Customers.cs" />
+    <Compile Remove="Repositories\CustomersRepo.cs" />
+    <Compile Remove="Repositories\ICustomers.cs" />
+    <Compile Remove="Repositories\ICustomersRepo.cs" />
+    <Compile Remove="Services\ICustomers.cs" />
+    <Compile Remove="Services\Products.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Controllers\CustomersController" />
+    <None Remove="Controllers\NewFile.txt" />
+    <None Remove="Controllers\NewFile1.txt" />
+    <None Remove="Controllers\ProductController" />
+    <None Remove="DTOs\NewFile.txt" />
+    <None Remove="Models\Enums\NewFile.txt" />
+    <None Remove="Models\Enums\UserTyo" />
+    <None Remove="Models\NewFile.txt" />
+    <None Remove="NewFile.txt" />
+    <None Remove="Repositories\NewFile.txt" />
+    <None Remove="Services\Customers" />
+    <None Remove="Services\NewFile.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.0.0" />
     <PackageReference Include="MiniProfiler.EntityFrameworkCore" Version="4.3.8" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.0" />
   </ItemGroup>
 
 </Project>

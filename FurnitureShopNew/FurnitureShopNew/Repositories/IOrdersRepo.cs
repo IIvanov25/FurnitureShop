@@ -1,12 +1,10 @@
-﻿using FurnitureShopNew.Models;
-using System.Collections.Generic;
-
-
+﻿using System.Collections.Generic;
 public interface IOrdersRepo
 {
-    IEnumerable<Orders> GetAllOrders();
-    Orders GetOrdersById(int OrdersId);
-    void AddOrders(Orders Orders);
-    void UpdateOrders(Orders Orders);
+    IEnumerable<Order> GetAllOrders();
+    Order GetOrderById(int OrderId);
+    void AddOrders(Order Orders);
+    void UpdateOrders(Order Orders);
     void DeleteOrders(int OrdersId);
+    List<Order> GetAllOrdersByUser(User customer);
 }
