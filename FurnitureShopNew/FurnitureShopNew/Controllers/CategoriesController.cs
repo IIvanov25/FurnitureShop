@@ -4,19 +4,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FurnitureShopNew.Controllers
 {
-    public class CategoriesController : Controller
+    public class CategoriesController : ControllerBase
     {
         private readonly FurnitureTypeCategory _categories;
         private readonly CategoriesRepo _categoriesRepo;
 
-        public CategoriesController()
+        public CategoriesController(FurnitureTypeCategory categories, CategoriesRepo categoriesRepo)
         {
-
-        }
-
-        public IActionResult Index()
-        {
-            return View();
+            _categories = categories;
+            _categoriesRepo = categoriesRepo;
         }
     }
 }

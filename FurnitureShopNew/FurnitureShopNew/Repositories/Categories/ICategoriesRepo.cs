@@ -6,8 +6,6 @@ namespace FurnitureShopNew.Repositories
     {
         IEnumerable<FurnitureTypeCategory> GetAllCategories();
         FurnitureTypeCategory GetCategoryById(int id);
-        void AddCategory(FurnitureTypeCategory category);
-        void UpdateCategory(FurnitureTypeCategory categoryOld, FurnitureTypeCategory categoryNew);
-        void DeleteCategory(FurnitureTypeCategory category);
+        FurnitureTypeCategory GetCategoryByName(string name);
     }
 }
