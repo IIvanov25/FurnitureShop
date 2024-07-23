@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ivan Ivanov\\Desktop\\NewFolderProject\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {}
+    "D:\\Visual Studio\\source\\repos\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ivan Ivanov\\Desktop\\NewFolderProject\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {
+    "D:\\Visual Studio\\source\\repos\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ivan Ivanov\\Desktop\\NewFolderProject\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
+        "projectUniqueName": "D:\\Visual Studio\\source\\repos\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
         "projectName": "FurnitureShopNew",
-        "projectPath": "C:\\Users\\Ivan Ivanov\\Desktop\\NewFolderProject\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
-        "packagesPath": "C:\\Users\\Ivan Ivanov\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ivan Ivanov\\Desktop\\NewFolderProject\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\obj\\",
+        "projectPath": "D:\\Visual Studio\\source\\repos\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
+        "packagesPath": "C:\\Users\\alber\\.nuget\\packages\\",
+        "outputPath": "D:\\Visual Studio\\source\\repos\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Ivan Ivanov\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\alber\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

@@ -28,7 +28,11 @@ namespace FurnitureShopNew.Repositories
 
         Product IProductRepo.GetProductById(int id)
         {
-            throw new NotImplementedException();
+            if(id < 0 || id >= _context.Products.Count())
+            {
+                throw new IndexOutOfRangeException($"Invalid index - {id}.");
+            }
+            return _context.Products.FirstOrDefault(p => p.ProductId == id);
         }
 
         int IProductRepo.GetQuantityById(int id)

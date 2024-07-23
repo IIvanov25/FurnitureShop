@@ -4,29 +4,34 @@ namespace FurnitureShopNew.Repositories
 {
     public class CategoriesRepo : ICategoriesRepo
     {
-        void ICategoriesRepo.AddCategory(FurnitureTypeCategory category)
-        {
-            throw new NotImplementedException();
-        }
-
-        void ICategoriesRepo.DeleteCategory(FurnitureTypeCategory category)
-        {
-            throw new NotImplementedException();
-        }
-
         IEnumerable<FurnitureTypeCategory> ICategoriesRepo.GetAllCategories()
         {
-            throw new NotImplementedException();
+            return Enum.GetValues(typeof(FurnitureTypeCategory))
+                       .Cast<FurnitureTypeCategory>()
+                       .ToList();
         }
 
         FurnitureTypeCategory ICategoriesRepo.GetCategoryById(int id)
         {
-            throw new NotImplementedException();
+            if (Enum.IsDefined(typeof(FurnitureTypeCategory), id))
+            {
+                return (FurnitureTypeCategory)id;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException($"Invalid index - {id}.");
+            }
         }
-
-        void ICategoriesRepo.UpdateCategory(FurnitureTypeCategory categoryold, FurnitureTypeCategory categorynew)
+        FurnitureTypeCategory ICategoriesRepo.GetCategoryByName(string name)
         {
-            throw new NotImplementedException();
+            if (Enum.TryParse(name, true, out FurnitureTypeCategory category))
+            {
+                return category;
+            }
+            else
+            {
+                throw new ArgumentException($"Invalid category name - {name}.");
+            }
         }
     }
 }

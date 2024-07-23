@@ -1,18 +1,35 @@
 ﻿using FurnitureShopNew.Models;
+using FurnitureShopNew.Repositories;
 
 public class ProductService : IProductService
 {
-    void IProductService.AddProduct(Product product)
+    private IProductRepo _productRepo;
+    public ProductService(IProductRepo productRepo)
+    {
+        _productRepo = productRepo;
+    }
+
+    public void AddProduct(Product product)
     {
         throw new NotImplementedException();
     }
 
-    List<Product> IProductService.GetAllProducts(Product products)
+    public List<Product> GetAllProducts(Product products)
     {
         throw new NotImplementedException();
     }
 
-    Product IProductService.RemoveProductById(int id)
+    public Product GetProductById(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Product GetProductByName(string name)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Product RemoveProductById(int id)
     {
         throw new NotImplementedException();
     }
