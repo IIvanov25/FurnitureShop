@@ -62,7 +62,5 @@ namespace FurnitureShopNew.Controllers
             }
 
         }
-
-
     }
 }

@@ -27,6 +27,7 @@ public class UserService : IUserService
             return false;
         }
 
+
         var user = new User
         {
             Username = username,
@@ -89,30 +90,17 @@ public class UserService : IUserService
         try
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Secret"]);
-            var tokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
-                ValidIssuer = _configuration["Jwt:Issuer"],
-                ValidAudience = _configuration["Jwt:Audience"],
-                IssuerSigningKey = new SymmetricSecurityKey(key)
-            };
 
-            SecurityToken validatedToken;
-            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out validatedToken);
+            var jwtToken = tokenHandler.ReadJwtToken(token);
 
-            var username = principal.FindFirst(ClaimTypes.Name)?.Value;
+            var username = jwtToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
 
             if (string.IsNullOrEmpty(username))
             {
                 return null;
             }
 
-            return await _context.Users
-                .FirstOrDefaultAsync(u => u.Username == username);
+            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
         }
         catch (Exception ex)
         {
