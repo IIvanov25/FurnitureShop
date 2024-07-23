@@ -24,3 +24,13 @@ C:\Users\Ivan Ivanov\source\repos\FurnitureShopNew\FurnitureShopNew\obj\Debug\ne
 C:\Users\Ivan Ivanov\source\repos\FurnitureShopNew\FurnitureShopNew\obj\Debug\net8.0\FurnitureShopNew.genruntimeconfig.cache
 C:\Users\Ivan Ivanov\source\repos\FurnitureShopNew\FurnitureShopNew\obj\Debug\net8.0\ref\FurnitureShopNew.dll
 C:\Users\Ivan Ivanov\source\repos\FurnitureShopNew\FurnitureShopNew\obj\Debug\net8.0\FurnitureShopNew.csproj.AssemblyReference.cache
+C:\Users\Ivan Ivanov\Desktop\Scalefocus Project\FurnitureShop\FurnitureShopNew\FurnitureShopNew\obj\Debug\net8.0\FurnitureShopNew.csproj.AssemblyReference.cache
+C:\Users\Ivan Ivanov\Desktop\Scalefocus Project\FurnitureShop\FurnitureShopNew\FurnitureShopNew\obj\Debug\net8.0\FurnitureShopNew.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ivan Ivanov\Desktop\Scalefocus Project\FurnitureShop\FurnitureShopNew\FurnitureShopNew\obj\Debug\net8.0\FurnitureShopNew.AssemblyInfoInputs.cache
+C:\Users\Ivan Ivanov\Desktop\Scalefocus Project\FurnitureShop\FurnitureShopNew\FurnitureShopNew\obj\Debug\net8.0\FurnitureShopNew.AssemblyInfo.cs
+C:\Users\Ivan Ivanov\Desktop\Scalefocus Project\FurnitureShop\FurnitureShopNew\FurnitureShopNew\obj\Debug\net8.0\FurnitureShopNew.csproj.CoreCompileInputs.cache
+C:\Users\Ivan Ivanov\Desktop\Scalefocus Project\FurnitureShop\FurnitureShopNew\FurnitureShopNew\obj\Debug\net8.0\FurnitureShopNew.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Ivan Ivanov\Desktop\Scalefocus Project\FurnitureShop\FurnitureShopNew\FurnitureShopNew\obj\Debug\net8.0\FurnitureShopNew.sourcelink.json
+C:\Users\Ivan Ivanov\Desktop\Scalefocus Project\FurnitureShop\FurnitureShopNew\FurnitureShopNew\obj\Debug\net8.0\FurnitureShopNew.dll
+C:\Users\Ivan Ivanov\Desktop\Scalefocus Project\FurnitureShop\FurnitureShopNew\FurnitureShopNew\obj\Debug\net8.0\refint\FurnitureShopNew.dll
+C:\Users\Ivan Ivanov\Desktop\Scalefocus Project\FurnitureShop\FurnitureShopNew\FurnitureShopNew\obj\Debug\net8.0\FurnitureShopNew.pdb
