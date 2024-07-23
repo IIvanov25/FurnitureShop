@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FurnitureShopNew.Models;
 using FurnitureShopNew.Services;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FurnitureShopNew.Controllers
 {
@@ -23,7 +23,7 @@ namespace FurnitureShopNew.Controllers
                 return BadRequest("Order cannot be null.");
             }
 
-            _ordersService.AddOrder(order);
+            _ordersService.AddOrders(order);
             return CreatedAtAction(nameof(GetOrderById), new { id = order.OrderId }, order);
         }
 
@@ -36,7 +36,7 @@ namespace FurnitureShopNew.Controllers
                 return NotFound();
             }
 
-            _ordersService.DeleteOrder(id);
+            _ordersService.DeleteOrders(id);
             return NoContent();
         }
 
@@ -81,7 +81,7 @@ namespace FurnitureShopNew.Controllers
                 return NotFound();
             }
 
-            _ordersService.UpdateOrder(order);
+            _ordersService.UpdateOrders(order);
             return NoContent();
         }
     }

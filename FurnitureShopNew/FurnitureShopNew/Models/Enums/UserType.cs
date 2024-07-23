@@ -1,5 +1,8 @@
-﻿public enum UserType
+﻿namespace FurnitureShopNew.Models
 {
-    Admin,
-    Client
+    public enum UserType
+    {
+        Admin,
+        Client
+    }
 }

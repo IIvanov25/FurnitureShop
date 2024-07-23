@@ -1,6 +1,8 @@
-﻿namespace FurnitureShopNew.Services
+﻿using FurnitureShopNew.Models;
+
+namespace FurnitureShopNew.Services
 {
-    public interface IOrdersService 
+    public interface IOrdersService
     {
         void AddOrders(Order order);
         void DeleteOrders(int orderId);

@@ -1,7 +1,5 @@
-using FurnitureShopNew;
 using FurnitureShopNew.Models;
-using System.Collections.Generic;
-using System.Linq;
+using FurnitureShopNew.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FurnitureShopNew.Controllers

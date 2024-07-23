@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace FurnitureShopNew
+namespace FurnitureShopNew.Models
 {
     public class ShopDbContext : DbContext
     {

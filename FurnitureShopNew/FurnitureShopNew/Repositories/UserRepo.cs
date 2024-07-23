@@ -1,11 +1,7 @@
-﻿using FurnitureShopNew;
-using FurnitureShopNew.Repositories;
+﻿using FurnitureShopNew.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace FurnitureShopNew
+namespace FurnitureShopNew.Repositories
 {
     public class UserRepo : IUserRepo
     {

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FurnitureShopNew.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FurnitureShopNew.Repositories 
+namespace FurnitureShopNew.Repositories
 {
     public class CartRepo : ICartRepo
     {

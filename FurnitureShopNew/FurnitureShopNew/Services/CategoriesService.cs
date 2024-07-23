@@ -1,10 +1,19 @@
-using FurnitureShopNew.Models;
-using System.Collections.Generic;
-using FurnitureShop;
+//using FurnitureShopNew.Services;
 
-public class CategoriesService : ICatedoriesService
-{
-    void RemoveProductById(int id);
-    void AddProduct(Categories category);
-    List<FurnitureTypeCategory> GetAllCategories(Categories categories);
-}
+//public class CategoriesService : ICategoriesService
+//{
+//    public void AddProduct(Categories category)
+//    {
+//        throw new NotImplementedException();
+//    }
+
+//    public List<Categories> GetAllCategories(Categories categories)
+//    {
+//        throw new NotImplementedException();
+//    }
+
+//    public void RemoveProductById(int id)
+//    {
+//        throw new NotImplementedException();
+//    }
+//}

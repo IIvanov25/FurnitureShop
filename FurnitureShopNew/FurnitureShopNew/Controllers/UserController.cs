@@ -1,17 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using System.Threading.Tasks;
-
-using FurnitureShopNew.Services;
-
-using System.Reflection.Metadata;
-using System.ComponentModel;
+﻿using FurnitureShopNew.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FurnitureShopNew.Controllers
 {
     [Route("user")]
     [ApiController]
-    public class UserController : Controller
+    public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
 
@@ -54,8 +48,7 @@ namespace FurnitureShopNew.Controllers
 
             try
             {
-                var token = await _userService.AuthenticateUser(userLoginDTO.UserName, userLoginDTO.Password);
-
+                var token = await _userService.AuthenticateUserAsync(userLoginDTO.UserName, userLoginDTO.Password);
                 if (string.IsNullOrEmpty(token))
                 {
                     return Unauthorized("Invalid username or password");

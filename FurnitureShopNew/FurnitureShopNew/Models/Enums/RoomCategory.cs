@@ -1,9 +1,13 @@
-public enum RoomCategory
+namespace FurnitureShopNew.Models
 {
-    LivingRoom,
-    Bedroom,
-    DiningRoom,
-    Kitchen,
-    Office,
-    Other
+    public enum RoomCategory
+    {
+        LivingRoom,
+        EntranceHall,
+        Bedroom,
+        DiningRoom,
+        Kitchen,
+        Office,
+        Other
+    }
 }

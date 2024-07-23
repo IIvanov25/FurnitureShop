@@ -1,49 +1,32 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using FurnitureShopNew.Models;
 
-namespace FurnitureShopNew.Repositories.Categories
+namespace FurnitureShopNew.Repositories
 {
     public class CategoriesRepo : ICategoriesRepo
     {
-        private List<FurnitureTypeCategory> _categories;
-
-        public CategoriesRepo()
+        void ICategoriesRepo.AddCategory(FurnitureTypeCategory category)
         {
-            _categories = Enum.GetValues(typeof(FurnitureTypeCategory)).Cast<FurnitureTypeCategory>().ToList();
+            throw new NotImplementedException();
         }
 
-        public IEnumerable<FurnitureTypeCategory> GetAllCategories()
+        void ICategoriesRepo.DeleteCategory(FurnitureTypeCategory category)
         {
-            return Enum.GetValues(typeof(FurnitureTypeCategory)).Cast<FurnitureTypeCategory>().ToList();
+            throw new NotImplementedException();
         }
 
-        public FurnitureTypeCategory GetCategoryById(int id)
+        IEnumerable<FurnitureTypeCategory> ICategoriesRepo.GetAllCategories()
         {
-            if (Enum.IsDefined(typeof(FurnitureTypeCategory), id))
-            {
-                
-                return (FurnitureTypeCategory)id;
-            }
-            else
-            {
-                throw new IndexOutOfRangeException("Invalid index.");
-            }
+            throw new NotImplementedException();
         }
 
-            public void AddCategory(FurnitureTypeCategory category)
-            {
-                _categories.Add(category);
-            }
-
-        public void UpdateCategory(FurnitureTypeCategory categoryold, FurnitureTypeCategory categorynew)
+        FurnitureTypeCategory ICategoriesRepo.GetCategoryById(int id)
         {
-            _categories.Remove(categoryold);
-            _categories.Add(categorynew);
-        } // taka li trqbva da e idk? --Alex (AusP3r1sh)
+            throw new NotImplementedException();
+        }
 
-        public void DeleteCategory(FurnitureTypeCategory category)
+        void ICategoriesRepo.UpdateCategory(FurnitureTypeCategory categoryold, FurnitureTypeCategory categorynew)
         {
-            _categories.Remove(category);
+            throw new NotImplementedException();
         }
     }
 }

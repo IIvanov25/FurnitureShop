@@ -1,33 +1,33 @@
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
-public class Cart
+namespace FurnitureShopNew.Models
 {
-    [Key]
-    public int CartId { get; set; }
-
-    [Required]
-    public int UserId { get; set; }
-
-    [ForeignKey("UserId")]
-    public virtual User User { get; set; }
-
-    public virtual ICollection<CartItem> CartItems { get; set; }
-
-    [NotMapped]
-    public decimal TotalProductSum
+    public class Cart
     {
-        get
+        [Key]
+        public int CartId { get; set; }
+
+        [Required]
+        public int UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
+
+        public virtual ICollection<CartItem> CartItems { get; set; }
+
+        [NotMapped]
+        public decimal TotalProductSum
         {
-            return CartItems?.Sum(item => item.Product.Price * item.Quantity) ?? 0;
+            get
+            {
+                return CartItems?.Sum(item => item.Product.Price * item.Quantity) ?? 0;
+            }
         }
-    }
-
-    public Cart()
-    {
-        CartItems = new HashSet<CartItem>();
+        public Cart()
+        {
+            CartItems = new HashSet<CartItem>();
+        }
     }
 }
 

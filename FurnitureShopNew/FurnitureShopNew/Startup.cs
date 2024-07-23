@@ -1,12 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
+﻿using FurnitureShopNew.Models;
 using FurnitureShopNew.Repositories;
-using FurnitureShopNew.Services;
-using FurnitureShopNew;
+using Microsoft.EntityFrameworkCore;
 
 namespace FurnitureShopNew
 {
