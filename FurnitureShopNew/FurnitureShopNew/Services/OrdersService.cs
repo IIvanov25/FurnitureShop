@@ -5,41 +5,61 @@ namespace FurnitureShopNew.Services
 {
     public class OrdersService : IOrdersService
     {
+        private readonly ShopDbContext _context;
         private readonly IOrdersRepo _ordersRepo;
 
-        public OrdersService(IOrdersRepo ordersRepo)
+        public OrdersService(IOrdersRepo ordersRepo, ShopDbContext context)
         {
             _ordersRepo = ordersRepo;
+            _context = context;
         }
 
-        void IOrdersService.AddOrders(Order order)
+        public void AddOrders(Order order)
         {
-            throw new NotImplementedException();
+            _context.Orders.Add(order);
+            _context.SaveChanges();
         }
 
-        void IOrdersService.DeleteOrders(int orderId)
+        public void DeleteOrders(int orderId)
         {
-            throw new NotImplementedException();
+            var orderToDelete = _context.Orders.First(o => o.OrderId == orderId);
+            _context.Orders.Remove(orderToDelete);
+            _context.SaveChanges();
         }
 
-        IEnumerable<Order> IOrdersService.GetAllOrders()
+        public IEnumerable<Order> GetAllOrders()
         {
-            throw new NotImplementedException();
+            return _context.Orders;
         }
 
-        List<Order> IOrdersService.GetAllOrdersByUser(User customer)
+        public List<Order> GetAllOrdersByUser(User customer)
         {
-            throw new NotImplementedException();
+            return _context.Orders.Where(o => o.Cart.UserId == customer.UserId).ToList();
         }
 
-        Order IOrdersService.GetOrderById(int orderId)
+        public Order GetOrderById(int orderId)
         {
-            throw new NotImplementedException();
+            var order = _context.Orders.First(o => o.OrderId == orderId);
+            return order;
         }
 
-        void IOrdersService.UpdateOrders(Order order)
+        public void UpdateOrders(Order order)
         {
-            throw new NotImplementedException();
+            var existingOrder = _context.Orders.FirstOrDefault(eo => eo.OrderId == order.OrderId);
+
+            if (existingOrder == null)
+            {
+                throw new ArgumentException("Order not found!");
+            }
+            else
+            {
+                existingOrder.OrderId = order.OrderId;
+                existingOrder.CartId = order.CartId;
+                existingOrder.DeliveryPrice = order.DeliveryPrice;
+                existingOrder.Address = order.Address;
+                _context.Orders.Update(existingOrder);
+            }
+            _context.SaveChanges();
         }
     }
 }
