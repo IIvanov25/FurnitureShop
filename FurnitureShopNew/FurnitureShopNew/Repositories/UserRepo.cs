@@ -10,6 +10,8 @@ namespace FurnitureShopNew.Repositories
         public UserRepo(ShopDbContext context)
         {
             _context = context;
+
+
         }
 
         public async Task AddUserAsync(User user)
