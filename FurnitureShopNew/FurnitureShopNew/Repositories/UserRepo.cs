@@ -11,7 +11,6 @@ namespace FurnitureShopNew.Repositories
         {
             _context = context;
         }
-
         public async Task AddUserAsync(User user)
         {
             try
@@ -46,7 +45,7 @@ namespace FurnitureShopNew.Repositories
         {
             try
             {
-                return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+                return await _context.Users.FirstAsync(u => u.Email == email);
             }
             catch (Exception ex)
             {
