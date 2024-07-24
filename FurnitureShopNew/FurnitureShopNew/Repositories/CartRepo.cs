@@ -1,5 +1,8 @@
 ﻿using FurnitureShopNew.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FurnitureShopNew.Repositories
 {
@@ -15,19 +18,6 @@ namespace FurnitureShopNew.Repositories
         public void AddProductToCart(int cartId, int productId, int quantity)
         {
             var cart = _context.Carts.Include(c => c.CartItems).FirstOrDefault(c => c.CartId == cartId);
-
-            if (cart == null)
-            {
-                throw new ArgumentException("Cart not found");
-            }
-
-            var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
-
-            if (product == null)
-            {
-                throw new ArgumentException("Product not found");
-            }
-
             var cartItem = cart.CartItems.FirstOrDefault(ci => ci.ProductId == productId);
 
             if (cartItem != null)
@@ -40,7 +30,7 @@ namespace FurnitureShopNew.Repositories
                 {
                     ProductId = productId,
                     Quantity = quantity,
-                    Product = product
+                    Product = _context.Products.FirstOrDefault(p => p.ProductId == productId)
                 });
             }
 
@@ -55,10 +45,6 @@ namespace FurnitureShopNew.Repositories
             foreach (var productId in productIds)
             {
                 var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
-                if (product == null)
-                {
-                    throw new ArgumentException("Product not found!");
-                }
                 totalAmount += product.Price;
             }
 
@@ -81,10 +67,6 @@ namespace FurnitureShopNew.Repositories
             foreach (var productId in productIds)
             {
                 var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
-                if (product == null)
-                {
-                    throw new ArgumentException("Product not found");
-                }
                 price += product.Price;
             }
 
@@ -99,10 +81,6 @@ namespace FurnitureShopNew.Repositories
             foreach (var productId in productIds)
             {
                 var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
-                if (product == null)
-                {
-                    throw new ArgumentException("Product not found");
-                }
                 priceOfProducts += product.Price;
             }
 
@@ -113,18 +91,8 @@ namespace FurnitureShopNew.Repositories
         {
             var cart = _context.Carts.Include(c => c.CartItems).ThenInclude(ci => ci.Product).FirstOrDefault(c => c.CartId == cartId);
 
-            if (cart == null)
-            {
-                throw new ArgumentException("Cart not found!");
-            }
-
             var productIds = cart.CartItems.Select(ci => ci.ProductId).ToList();
             decimal totalPrice = GetTotalPrice(productIds);
-
-            if (totalPrice <= 0)
-            {
-                throw new ArgumentException("There is nothing in the cart! Please add products to place an order!");
-            }
 
             var order = new Order
             {
@@ -132,7 +100,7 @@ namespace FurnitureShopNew.Repositories
                 CartId = cart.CartId,
                 OrderDate = DateTime.Now,
                 DeliveryPrice = GetDeliveryPrice(productIds),
-                Address = address 
+                Address = address
             };
 
             foreach (var item in cart.CartItems)
@@ -153,18 +121,7 @@ namespace FurnitureShopNew.Repositories
         public void RemoveProduct(int cartId, int productId, int quantity)
         {
             var cart = _context.Carts.Include(c => c.CartItems).FirstOrDefault(c => c.CartId == cartId);
-
-            if (cart == null)
-            {
-                throw new ArgumentException("Cart not found");
-            }
-
             var cartItem = cart.CartItems.FirstOrDefault(ci => ci.ProductId == productId);
-
-            if (cartItem == null)
-            {
-                throw new ArgumentException("Product not found in cart");
-            }
 
             cartItem.Quantity -= quantity;
 
