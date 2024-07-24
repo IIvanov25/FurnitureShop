@@ -10,47 +10,34 @@ namespace FurnitureShopNew.Repositories
         public UserRepo(ShopDbContext context)
         {
             _context = context;
+
+
         }
         public async Task AddUserAsync(User user)
         {
-            try
-            {
-                await _context.Users.AddAsync(user);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException("Failed to add user", ex);
-            }
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteUserEmailAsync(string email)
+        public async Task DeleteUserAsync(User user)
         {
-            try
-            {
-                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
-                if (user != null)
-                {
-                    _context.Users.Remove(user);
-                    await _context.SaveChangesAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException("Failed to delete user", ex);
-            }
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
         }
 
-        public async Task<User> FindByEmailAsync(string email)
+        public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
-            try
-            {
-                return await _context.Users.FirstAsync(u => u.Email == email);
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException("Failed to find user", ex);
-            }
+            return await _context.Users.ToListAsync();
+        }
+
+        public async Task<User> GetUserByIdAsync(int id)
+        {
+            return await _context.Users.FindAsync(id);
+        }
+
+        public async Task<User> GetUserByUsernameAsync(string username)
+        {
+            return await _context.Users .FirstOrDefaultAsync(u => u.Username == username);
         }
     }
 }

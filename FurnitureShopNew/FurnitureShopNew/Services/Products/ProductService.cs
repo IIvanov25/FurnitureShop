@@ -4,13 +4,19 @@ using FurnitureShopNew.Services;
 
 public class ProductService : IProductService
 {
- 
-    public Task<IEnumerable<Product>> GetAllProductsAsync()
+
+    private readonly IProductRepo _productRepo;
+
+    public ProductService(IProductRepo productRepo)
+    {
+        _productRepo = productRepo;
+    }
+    public async Task<IEnumerable<Product>> GetAllProductsAsync()
     {
         throw new NotImplementedException();
     }
 
-    public Task<Product> GetProductByIdAsync(int productId)
+    public async Task<Product> GetProductByIdAsync(int productId)
     {
         throw new NotImplementedException();
     }
