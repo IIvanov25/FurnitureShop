@@ -13,7 +13,6 @@ namespace FurnitureShopNew.Repositories
 
 
         }
-
         public async Task AddUserAsync(User user)
         {
             _context.Users.Add(user);

@@ -1,14 +1,14 @@
-﻿
+﻿using System.Collections.Generic;
 
 namespace FurnitureShopNew.Repositories
 {
     public interface ICartRepo
     {
         void AddProductToCart(int cartId, int productId, int quantity);
-        void RemoveProduct(int cartId, int productId, int quantity);
-        void MakeOrder(int cartId, string address);
-        decimal GetPriceOfProducts(List<int> productIds);
         decimal GetDeliveryPrice(List<int> productIds);
+        decimal GetPriceOfProducts(List<int> productIds);
         decimal GetTotalPrice(List<int> productIds);
+        void MakeOrder(int cartId, string address);
+        void RemoveProduct(int cartId, int productId, int quantity);
     }
 }

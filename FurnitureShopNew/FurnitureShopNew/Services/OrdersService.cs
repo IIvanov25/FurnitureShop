@@ -1,4 +1,5 @@
-﻿using FurnitureShopNew.Models;
+﻿
+using FurnitureShopNew.Models;
 using FurnitureShopNew.Repositories;
 
 namespace FurnitureShopNew.Services
@@ -12,34 +13,67 @@ namespace FurnitureShopNew.Services
             _ordersRepo = ordersRepo;
         }
 
-        void IOrdersService.AddOrders(Order order)
+        public void AddOrders(Order order)
         {
-            throw new NotImplementedException();
+            if (order == null)
+            {
+                throw new ArgumentNullException(nameof(order));
+            }
+
+            _ordersRepo.AddOrders(order);
         }
 
-        void IOrdersService.DeleteOrders(int orderId)
+        public void DeleteOrders(int orderId)
         {
-            throw new NotImplementedException();
+            var order = _ordersRepo.GetOrderById(orderId);
+            if (order == null)
+            {
+                throw new KeyNotFoundException($"Order with id {orderId} not found.");
+            }
+
+            _ordersRepo.DeleteOrders(orderId);
         }
 
-        IEnumerable<Order> IOrdersService.GetAllOrders()
+        public IEnumerable<Order> GetAllOrders()
         {
-            throw new NotImplementedException();
+            return _ordersRepo.GetAllOrders();
         }
 
-        List<Order> IOrdersService.GetAllOrdersByUser(User customer)
+        public List<Order> GetAllOrdersByUser(User customer)
         {
-            throw new NotImplementedException();
+            if (customer == null)
+            {
+                throw new ArgumentNullException(nameof(customer));
+            }
+
+            return _ordersRepo.GetAllOrdersByUser(customer);
         }
 
-        Order IOrdersService.GetOrderById(int orderId)
+        public Order GetOrderById(int orderId)
         {
-            throw new NotImplementedException();
+            var order = _ordersRepo.GetOrderById(orderId);
+            if (order == null)
+            {
+                throw new KeyNotFoundException($"Order with id {orderId} not found.");
+            }
+
+            return order;
         }
 
-        void IOrdersService.UpdateOrders(Order order)
+        public void UpdateOrders(Order order)
         {
-            throw new NotImplementedException();
+            if (order == null)
+            {
+                throw new ArgumentNullException(nameof(order));
+            }
+
+            var existingOrder = _ordersRepo.GetOrderById(order.OrderId);
+            if (existingOrder == null)
+            {
+                throw new KeyNotFoundException($"Order with id {order.OrderId} not found.");
+            }
+
+            _ordersRepo.UpdateOrders(order);
         }
     }
 }

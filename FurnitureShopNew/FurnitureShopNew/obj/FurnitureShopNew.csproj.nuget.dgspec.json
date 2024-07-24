@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ProjectsTest\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {}
+    "D:\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {}
   },
   "projects": {
-    "C:\\ProjectsTest\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {
+    "D:\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ProjectsTest\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
+        "projectUniqueName": "D:\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
         "projectName": "FurnitureShopNew",
-        "projectPath": "C:\\ProjectsTest\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
-        "packagesPath": "C:\\Users\\dania\\.nuget\\packages\\",
-        "outputPath": "C:\\ProjectsTest\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\obj\\",
+        "projectPath": "D:\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
+        "packagesPath": "C:\\Users\\geni5\\.nuget\\packages\\",
+        "outputPath": "D:\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\dania\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\geni5\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -70,7 +70,7 @@
             },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.1, )"
             },
             "MiniProfiler.EntityFrameworkCore": {
               "target": "Package",
@@ -86,7 +86,7 @@
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.1, )"
             },
             "jose-jwt": {
               "target": "Package",

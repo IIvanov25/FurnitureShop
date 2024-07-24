@@ -24,7 +24,7 @@ namespace FurnitureShopNew.Controllers
             }
 
             _ordersService.AddOrders(order);
-            return CreatedAtAction(nameof(GetOrderById), new { id = order.OrderId }, order);
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
