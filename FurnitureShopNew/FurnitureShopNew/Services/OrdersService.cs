@@ -16,7 +16,7 @@ namespace FurnitureShopNew.Services
 
         public void AddOrders(Order order)
         {
-            _context.Orders.Add(order);
+            _ordersRepo.AddOrders(order);
             _context.SaveChanges();
         }
 

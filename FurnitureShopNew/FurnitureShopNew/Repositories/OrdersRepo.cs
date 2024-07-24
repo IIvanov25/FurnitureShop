@@ -34,7 +34,7 @@ namespace FurnitureShopNew.Repositories
 
         public Order GetOrderById(int orderId)
         {
-            var order = _context.Orders.First(o => o.OrderId == orderId);
+            var order = _context.Orders.FirstOrDefault(o => o.OrderId == orderId);
             return order;
         }
 
