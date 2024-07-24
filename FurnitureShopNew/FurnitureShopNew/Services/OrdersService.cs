@@ -22,44 +22,28 @@ namespace FurnitureShopNew.Services
 
         public void DeleteOrders(int orderId)
         {
-            var orderToDelete = _context.Orders.First(o => o.OrderId == orderId);
-            _context.Orders.Remove(orderToDelete);
+            _ordersRepo.DeleteOrders(orderId);
             _context.SaveChanges();
         }
 
         public IEnumerable<Order> GetAllOrders()
         {
-            return _context.Orders;
+            return _ordersRepo.GetAllOrders();
         }
 
         public List<Order> GetAllOrdersByUser(User customer)
         {
-            return _context.Orders.Where(o => o.Cart.UserId == customer.UserId).ToList();
+            return _ordersRepo.GetAllOrdersByUser(customer);
         }
 
         public Order GetOrderById(int orderId)
         {
-            var order = _context.Orders.First(o => o.OrderId == orderId);
-            return order;
+            return _ordersRepo.GetOrderById(orderId);
         }
 
         public void UpdateOrders(Order order)
         {
-            var existingOrder = _context.Orders.FirstOrDefault(eo => eo.OrderId == order.OrderId);
-
-            if (existingOrder == null)
-            {
-                throw new ArgumentException("Order not found!");
-            }
-            else
-            {
-                existingOrder.OrderId = order.OrderId;
-                existingOrder.CartId = order.CartId;
-                existingOrder.DeliveryPrice = order.DeliveryPrice;
-                existingOrder.Address = order.Address;
-                _context.Orders.Update(existingOrder);
-            }
-            _context.SaveChanges();
+            _ordersRepo.UpdateOrders(order);
         }
     }
 }

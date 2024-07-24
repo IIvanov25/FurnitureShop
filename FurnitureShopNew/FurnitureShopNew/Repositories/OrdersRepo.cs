@@ -9,35 +9,52 @@ namespace FurnitureShopNew.Repositories
         {
             _context = context;
         }
-
-        void IOrdersRepo.AddOrders(Order orders)
+        public void AddOrders(Order orders)
         {
             _context.Orders.Add(orders);
+            _context.SaveChanges();
         }
 
-        void IOrdersRepo.DeleteOrders(int ordersId)
+        public void DeleteOrders(int ordersId)
         {
-            
+            var order = _context.Orders.First(o => o.OrderId == ordersId);
+            _context.Orders.Remove(order);
+            _context.SaveChanges();
         }
 
-        IEnumerable<Order> IOrdersRepo.GetAllOrders()
+        public IEnumerable<Order> GetAllOrders()
         {
-            throw new NotImplementedException();
+            return _context.Orders;
         }
 
-        List<Order> IOrdersRepo.GetAllOrdersByUser(User customer)
+        public List<Order> GetAllOrdersByUser(User customer)
         {
-            throw new NotImplementedException();
+            return _context.Orders.Where(o => o.Cart.UserId == customer.UserId).ToList();
         }
 
-        Order IOrdersRepo.GetOrderById(int orderId)
+        public Order GetOrderById(int orderId)
         {
-            throw new NotImplementedException();
+            var order = _context.Orders.First(o => o.OrderId == orderId);
+            return order;
         }
 
-        void IOrdersRepo.UpdateOrders(Order order)
+        public void UpdateOrders(Order order)
         {
-            throw new NotImplementedException();
+            var existingOrder = _context.Orders.FirstOrDefault(eo => eo.OrderId == order.OrderId);
+
+            if (existingOrder == null)
+            {
+                throw new ArgumentException("Order not found!");
+            }
+            else
+            {
+                existingOrder.OrderId = order.OrderId;
+                existingOrder.CartId = order.CartId;
+                existingOrder.DeliveryPrice = order.DeliveryPrice;
+                existingOrder.Address = order.Address;
+                _context.Orders.Update(existingOrder);
+            }
+            _context.SaveChanges();
         }
     }
 }
