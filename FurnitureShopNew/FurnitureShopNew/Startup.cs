@@ -1,6 +1,11 @@
 ﻿using FurnitureShopNew.Models;
 using FurnitureShopNew.Repositories;
+using FurnitureShopNew.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 
 namespace FurnitureShopNew
 {
@@ -10,18 +15,31 @@ namespace FurnitureShopNew
         {
             Configuration = configuration;
         }
-        public IConfiguration Configuration { get; }
-        void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllersWithViews();
-            services.AddDbContext<ShopDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+        public IConfiguration Configuration { get; }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            // Add services to the container
+            services.AddControllersWithViews();
+
+            // Configure the DbContext with a connection string
+            services.AddDbContext<ShopDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("Data Source=MONI;Initial Catalog=FurnitureShop;Integrated Security=True;Encrypt=True;Trust Server Certificate=True")));
+
+            // Register repositories and services for dependency injection
             services.AddScoped<IProductRepo, ProductRepo>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICartRepo, CartRepo>();
+            services.AddScoped<ICartService, CartService>();
+            services.AddScoped<IOrdersRepo, OrdersRepo>();
+            services.AddScoped<IOrdersService, OrdersService>();
         }
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Configure the HTTP request pipeline
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -31,6 +49,7 @@ namespace FurnitureShopNew
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
