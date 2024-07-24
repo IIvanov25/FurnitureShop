@@ -1,33 +1,27 @@
 using FurnitureShopNew.Models;
+using FurnitureShopNew.Repositories;
 using FurnitureShopNew.Services;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 public class UserService : IUserService
 {
-    private readonly ShopDbContext _context;
+    private readonly IUserRepo _userRepo;
     private readonly IConfiguration _configuration;
 
-    public UserService(ShopDbContext context, IConfiguration configuration)
+    public UserService(IUserRepo userRepo, IConfiguration configuration)
     {
-        _context = context;
+        _userRepo = userRepo;
         _configuration = configuration;
     }
 
     public async Task<bool> HandleSignUpAsync(string username, string firstName, string lastName, string email, string phoneNumber, string password)
     {
-        var existingUser = await _context.Users
-            .FirstOrDefaultAsync(u => u.Username == username || u.Email == email);
-
-        if (existingUser != null)
-        {
-            return false;
-        }
-
-
+        
         var user = new User
         {
             Username = username,
@@ -35,23 +29,21 @@ public class UserService : IUserService
             LastName = lastName,
             Email = email,
             PhoneNumber = phoneNumber,
-            Password = password,
+            Password = password, 
             Role = UserType.Client
         };
 
-        _context.Users.Add(user);
-        await _context.SaveChangesAsync();
+        await _userRepo.AddUserAsync(user);
         return true;
     }
 
     public async Task<string> AuthenticateUserAsync(string username, string password)
     {
-        var user = await _context.Users
-            .FirstOrDefaultAsync(u => u.Username == username);
+        var user = await _userRepo.GetUserByUsernameAsync(username);
 
-        if (user == null || password != user.Password)
+        if (user == null || user.Password != password)
         {
-            return null;
+            return null; 
         }
 
         var tokenHandler = new JwtSecurityTokenHandler();
@@ -75,58 +67,34 @@ public class UserService : IUserService
 
     public async Task<IEnumerable<User>> GetAllUsersAsync()
     {
-        try
-        {
-            return await _context.Users.ToListAsync();
-        }
-        catch (Exception ex)
-        {
-            throw new Exception("Failed to retrieve users from the database.", ex);
-        }
+        return await _userRepo.GetAllUsersAsync();
     }
 
     public async Task<User> GetCurrentUserAsync(string token)
     {
-        try
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var jwtToken = tokenHandler.ReadJwtToken(token);
+
+        var username = jwtToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+
+        if (string.IsNullOrEmpty(username))
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-
-            var jwtToken = tokenHandler.ReadJwtToken(token);
-
-            var username = jwtToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
-
-            if (string.IsNullOrEmpty(username))
-            {
-                return null;
-            }
-
-            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+            return null; 
         }
-        catch (Exception ex)
-        {
-            throw new Exception("Failed to retrieve the current user.", ex);
-        }
+
+        return await _userRepo.GetUserByUsernameAsync(username);
     }
 
     public async Task<bool> DeleteUserAsync(int id)
     {
-        try
+        var user = await _userRepo.GetUserByIdAsync(id);
+
+        if (user == null)
         {
-            var user = await _context.Users.FindAsync(id);
-
-            if (user == null)
-            {
-                return false;
-            }
-
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return true;
+            return false; 
         }
-        catch (Exception ex)
-        {
-            throw new Exception("Failed to delete user.", ex);
-        }
+
+        await _userRepo.DeleteUserAsync(user);
+        return true;
     }
 }

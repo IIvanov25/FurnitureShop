@@ -2,9 +2,10 @@
 {
     public interface IUserRepo
     {
+        Task<User> GetUserByIdAsync(int id);
+        Task<User> GetUserByUsernameAsync(string username);
+        Task<IEnumerable<User>> GetAllUsersAsync();
         Task AddUserAsync(User user);
-        Task DeleteUserEmailAsync(string email);
-        Task<User> FindByEmailAsync(string email);
-
+        Task DeleteUserAsync(User user);
     }
 }
