@@ -52,23 +52,20 @@ public void DeleteCategory(FurnitureTypeCategory category)
         {
             if (_context.Categories.Contains(c => c.Id == id))
             {
-                return c;
+                return _context.Categories.Where(c => c.Id == id);
             }
             else
             {
                 throw new IndexOutOfRangeException($"Invalid index - {id}.");
             }
         }
-        FurnitureTypeCategory ICategoriesRepo.GetCategoryByName(string name)
+        FurnitureTypeCategory GetCategoryByName(string name)
         {
             if (_context.Categories.Contains(c => c.Name == name))
             {
-                return c;
+                return _context.Categories.Where(c => c.Name == name);
             }
-            else
-            {
-                throw new ArgumentException($"Invalid category name - {name}.");
-            }
+            catch new ArgumentException{$"Invalid category name - {name}."}
         }
     }
 }

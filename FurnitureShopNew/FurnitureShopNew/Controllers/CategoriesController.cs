@@ -6,13 +6,11 @@ namespace FurnitureShopNew.Controllers
 {
     public class CategoriesController : ControllerBase
     {
-        private readonly FurnitureTypeCategory _categories;
-        private readonly CategoriesRepo _categoriesRepo;
+        private readonly ICategoriesService _categoriesService
 
-        public CategoriesController(FurnitureTypeCategory categories, CategoriesRepo categoriesRepo)
+        public CategoriesController(ICategoriesService categoriesService)
         {
-            _categories = categories;
-            _categoriesRepo = categoriesRepo;
+            _categoriesService = categoriesService;
         }
     }
 }

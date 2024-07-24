@@ -4,8 +4,11 @@ namespace FurnitureShopNew.Services
 {
     public interface ICategoriesService
     {
-        public void RemoveProductById(int id);
-        void AddProduct(FurnitureTypeCategory category);
-        List<FurnitureTypeCategory> GetAllCategories(FurnitureTypeCategory categories);
+        List<FurnitureTypeCategory> GetAllCategories();
+        FurnitureTypeCategory GetCategoryById(int id);
+        FurnitureTypeCategory GetCategoryByName(string name);
+        void AddCategory(FurnitureTypeCategory category);
+        void UpdateCategory(FurnitureTypeCategory oldcategory, FurnitureTypeCategory newcategory);
+        void DeleteCategory(FurnitureTypeCategory category);
     }
 }
