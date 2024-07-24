@@ -4,11 +4,16 @@ namespace FurnitureShopNew.Repositories
 {
     public class CategoriesRepo : ICategoriesRepo
     {
-        IEnumerable<FurnitureTypeCategory> ICategoriesRepo.GetAllCategories()
+        private readonly ShopDbContext _context;
+
+        public CategoriesRepo(ShopDbContext context)
         {
-            return Enum.GetValues(typeof(FurnitureTypeCategory))
-                       .Cast<FurnitureTypeCategory>()
-                       .ToList();
+            _context = context;
+        }
+        
+        List<string> GetAllCategories()
+        {
+            return _context.Categories.ToList();
         }
 
         FurnitureTypeCategory ICategoriesRepo.GetCategoryById(int id)
