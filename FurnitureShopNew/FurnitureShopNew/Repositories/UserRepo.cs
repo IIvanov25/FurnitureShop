@@ -11,7 +11,6 @@ namespace FurnitureShopNew.Repositories
         {
             _context = context;
 
-
         }
         public async Task AddUserAsync(User user)
         {
