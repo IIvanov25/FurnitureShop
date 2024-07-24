@@ -1,7 +1,7 @@
 ﻿using FurnitureShopNew.Models;
+using System.Threading.Tasks;
 public interface IProductService
 {
-    Product RemoveProductById(int id);
-    void AddProduct(Product product);
-    List<Product> GetAllProducts(Product products);
+    Task<IEnumerable<Product>> GetAllProductsAsync();
+    Task<Product> GetProductByIdAsync(int productId);
 }
