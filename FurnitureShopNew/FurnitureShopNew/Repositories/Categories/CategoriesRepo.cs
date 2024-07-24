@@ -16,11 +16,43 @@ namespace FurnitureShopNew.Repositories
             return _context.Categories.ToList();
         }
 
-        FurnitureTypeCategory ICategoriesRepo.GetCategoryById(int id)
+        public void AddCategory(FurnitureTypeCategory category)
+{
+     if(!_context.Categories.Contains(c => c.Name == name))
+{
+    _context.Categories.Add(category);
+}
+     else throw new ArgumentException($"Category with name - {category.name} already exists.");
+}
+
+
+public void UpdateCategory(FurnitureTypeCategory oldcategory, FurnitureTypeCategory newcategory)
+{
+    try
+{
+    _context.Categories.Remove(oldcategory);
+    _context.Categories.Add(newcategory);
+}
+    catch(Exception)
+{
+    throw new Exception("Error in removing old category.");
+}
+}
+
+public void DeleteCategory(FurnitureTypeCategory category)
+{
+     if(_context.Categories.Contains(c => c.Name == name))
+{
+    _context.Categories.Remove(category);
+}
+     else throw new ArgumentException($"Category with name - {category.name} doesn't exist.");
+}
+
+        FurnitureTypeCategory GetCategoryById(int id)
         {
-            if (Enum.IsDefined(typeof(FurnitureTypeCategory), id))
+            if (_context.Categories.Contains(c => c.Id == id))
             {
-                return (FurnitureTypeCategory)id;
+                return c;
             }
             else
             {
@@ -29,9 +61,9 @@ namespace FurnitureShopNew.Repositories
         }
         FurnitureTypeCategory ICategoriesRepo.GetCategoryByName(string name)
         {
-            if (Enum.TryParse(name, true, out FurnitureTypeCategory category))
+            if (_context.Categories.Contains(c => c.Name == name))
             {
-                return category;
+                return c;
             }
             else
             {
