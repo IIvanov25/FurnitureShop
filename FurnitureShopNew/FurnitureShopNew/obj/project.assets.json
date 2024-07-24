@@ -7634,23 +7634,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\geni5\\.nuget\\packages\\": {},
+    "C:\\Users\\dania\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
+      "projectUniqueName": "C:\\ProjectsTest\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
       "projectName": "FurnitureShopNew",
-      "projectPath": "D:\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
-      "packagesPath": "C:\\Users\\geni5\\.nuget\\packages\\",
-      "outputPath": "D:\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\obj\\",
+      "projectPath": "C:\\ProjectsTest\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
+      "packagesPath": "C:\\Users\\dania\\.nuget\\packages\\",
+      "outputPath": "C:\\ProjectsTest\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\geni5\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\dania\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

@@ -1,49 +1,27 @@
 ﻿using FurnitureShopNew.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FurnitureShopNew.Repositories
 {
-
     public class ProductRepo : IProductRepo
     {
         private readonly ShopDbContext _context;
+
         public ProductRepo(ShopDbContext context)
         {
             _context = context;
         }
 
-        void IProductRepo.AddProduct(Product product)
+        public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Products.ToListAsync();
         }
 
-        void IProductRepo.DeleteProduct(Product product)
+        public async Task<Product> GetProductByIdAsync(int productId)
         {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<Product> IProductRepo.GetAllProducts()
-        {
-            throw new NotImplementedException();
-        }
-
-        Product IProductRepo.GetProductById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        int IProductRepo.GetQuantityById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<Product> IProductRepo.SearchProductByCategory(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IProductRepo.UpdateProduct(Product product)
-        {
-            throw new NotImplementedException();
+            return await _context.Products.FindAsync(productId);
         }
     }
 }
