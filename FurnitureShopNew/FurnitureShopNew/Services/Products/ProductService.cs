@@ -1,18 +1,16 @@
 ﻿using FurnitureShopNew.Models;
+using FurnitureShopNew.Repositories;
+using FurnitureShopNew.Services;
 
 public class ProductService : IProductService
 {
-    void IProductService.AddProduct(Product product)
+ 
+    public Task<IEnumerable<Product>> GetAllProductsAsync()
     {
         throw new NotImplementedException();
     }
 
-    List<Product> IProductService.GetAllProducts(Product products)
-    {
-        throw new NotImplementedException();
-    }
-
-    Product IProductService.RemoveProductById(int id)
+    public Task<Product> GetProductByIdAsync(int productId)
     {
         throw new NotImplementedException();
     }
