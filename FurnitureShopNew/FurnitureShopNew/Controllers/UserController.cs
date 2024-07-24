@@ -15,7 +15,7 @@ namespace FurnitureShopNew.Controllers
             _userService = userService;
         }
 
-        [HttpPost("signUp")]
+        [HttpPost("signup")]
         public async Task<IActionResult> SignUp([FromBody] UserSignUpDTO userSignUpDTO)
         {
             if (userSignUpDTO == null)
