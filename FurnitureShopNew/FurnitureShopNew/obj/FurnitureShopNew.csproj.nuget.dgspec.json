@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {}
+    "C:\\Users\\Ivan Ivanov\\Desktop\\NewFolderProject\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {}
   },
   "projects": {
-    "D:\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {
+    "C:\\Users\\Ivan Ivanov\\Desktop\\NewFolderProject\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
+        "projectUniqueName": "C:\\Users\\Ivan Ivanov\\Desktop\\NewFolderProject\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
         "projectName": "FurnitureShopNew",
-        "projectPath": "D:\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
-        "packagesPath": "C:\\Users\\geni5\\.nuget\\packages\\",
-        "outputPath": "D:\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\obj\\",
+        "projectPath": "C:\\Users\\Ivan Ivanov\\Desktop\\NewFolderProject\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
+        "packagesPath": "C:\\Users\\Ivan Ivanov\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ivan Ivanov\\Desktop\\NewFolderProject\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\geni5\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ivan Ivanov\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

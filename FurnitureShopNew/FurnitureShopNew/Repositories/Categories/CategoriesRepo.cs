@@ -4,27 +4,27 @@ namespace FurnitureShopNew.Repositories
 {
     public class CategoriesRepo : ICategoriesRepo
     {
-        void ICategoriesRepo.AddCategory(FurnitureTypeCategory category)
+        public void AddCategory(FurnitureTypeCategory category)
         {
             throw new NotImplementedException();
         }
 
-        void ICategoriesRepo.DeleteCategory(FurnitureTypeCategory category)
+        public void DeleteCategory(FurnitureTypeCategory category)
         {
             throw new NotImplementedException();
         }
 
-        IEnumerable<FurnitureTypeCategory> ICategoriesRepo.GetAllCategories()
+        public IEnumerable<FurnitureTypeCategory> GetAllCategories()
         {
             throw new NotImplementedException();
         }
 
-        FurnitureTypeCategory ICategoriesRepo.GetCategoryById(int id)
+        public FurnitureTypeCategory GetCategoryById(int id)
         {
             throw new NotImplementedException();
         }
 
-        void ICategoriesRepo.UpdateCategory(FurnitureTypeCategory categoryold, FurnitureTypeCategory categorynew)
+        public void UpdateCategory(FurnitureTypeCategory categoryOld, FurnitureTypeCategory categoryNew)
         {
             throw new NotImplementedException();
         }
