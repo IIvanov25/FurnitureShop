@@ -13,11 +13,11 @@ public class ProductService : IProductService
     }
     public async Task<IEnumerable<Product>> GetAllProductsAsync()
     {
-        throw new NotImplementedException();
+        return await _productRepo.GetAllProductsAsync();
     }
 
     public async Task<Product> GetProductByIdAsync(int productId)
     {
-        throw new NotImplementedException();
+        return await _productRepo.GetProductByIdAsync(productId);
     }
 }
