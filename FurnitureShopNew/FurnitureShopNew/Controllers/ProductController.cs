@@ -30,8 +30,7 @@ namespace FurnitureShopNew.Controllers
                     p.Description,
                     p.Price,
                     p.StockQuantity,
-                    p.RoomCategories.Select(rc => rc.ToString()).ToList(), 
-                    p.FurnitureTypeCategories.Select(ftc => ftc.ToString()).ToList() 
+                    p.FurnitureTypeCategoryId
                 )).ToList();
 
                 return Ok(productDtos);
@@ -101,8 +100,7 @@ namespace FurnitureShopNew.Controllers
                     product.Description,
                     product.Price,
                     product.StockQuantity,
-                    product.RoomCategories.Select(rc => rc.ToString()).ToList(),
-                    product.FurnitureTypeCategories.Select(ftc => ftc.ToString()).ToList()
+                    product.FurnitureTypeCategoryId
                 );
 
                 return Ok(productDto);

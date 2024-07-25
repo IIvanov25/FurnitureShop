@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace FurnitureShopNew.Models
 {
@@ -7,11 +8,14 @@ namespace FurnitureShopNew.Models
         public ShopDbContext(DbContextOptions<ShopDbContext> options) : base(options)
         {
         }
+
         public DbSet<User> Users { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<RoomCategory> RoomCategories { get; set; }
+        public DbSet<FurnitureTypeCategory> FurnitureTypeCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -58,13 +62,9 @@ namespace FurnitureShopNew.Models
                 .WithMany()
                 .HasForeignKey(ci => ci.ProductId);
 
-            // Configure Product entity with enums
+            // Configure Product
             modelBuilder.Entity<Product>()
-                .Property(p => p.RoomCategories)
-                .HasConversion<int>();
-
-            modelBuilder.Entity<Product>()
-                .Property(p => p.FurnitureTypeCategories)
+                .Property(p => p.FurnitureTypeCategoryId)
                 .HasConversion<int>();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FurnitureShopNew.Models
 {
@@ -22,13 +23,15 @@ namespace FurnitureShopNew.Models
         [Required]
         public int StockQuantity { get; set; }
 
-        public virtual ICollection<RoomCategory> RoomCategories { get; set; }
-        public virtual ICollection<FurnitureTypeCategory> FurnitureTypeCategories { get; set; }
+        // Foreign Key
+        [Required]
+        public int FurnitureTypeCategoryId { get; set; }
+
+        // Navigation Property
+        public virtual FurnitureTypeCategory FurnitureTypeCategory { get; set; }
 
         public Product()
         {
-            RoomCategories = new HashSet<RoomCategory>();
-            FurnitureTypeCategories = new HashSet<FurnitureTypeCategory>();
         }
     }
 }
