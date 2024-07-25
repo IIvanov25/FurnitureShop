@@ -12,6 +12,7 @@ namespace FurnitureShopNew.Models
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<FurnitureTypeCategory> Categories {get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -66,6 +67,10 @@ namespace FurnitureShopNew.Models
             modelBuilder.Entity<Product>()
                 .Property(p => p.FurnitureTypeCategories)
                 .HasConversion<int>();
+
+            // Category
+            modelBuilder.Entity<FurnitureTypeCategory>()
+                .IsUnique();
         }
     }
 }
