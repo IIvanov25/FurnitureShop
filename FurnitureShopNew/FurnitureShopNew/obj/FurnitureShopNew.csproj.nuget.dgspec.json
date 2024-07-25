@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\Source\\Repos\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {}
+    "C:\\Users\\PC\\source\\repos\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\Source\\Repos\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {
+    "C:\\Users\\PC\\source\\repos\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Source\\Repos\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\source\\repos\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
         "projectName": "FurnitureShopNew",
-        "projectPath": "C:\\Users\\PC\\Source\\Repos\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
+        "projectPath": "C:\\Users\\PC\\source\\repos\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
         "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Source\\Repos\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\obj\\",
+        "outputPath": "C:\\Users\\PC\\source\\repos\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",

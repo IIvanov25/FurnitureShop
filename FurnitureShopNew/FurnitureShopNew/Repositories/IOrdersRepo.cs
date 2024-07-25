@@ -4,11 +4,11 @@ namespace FurnitureShopNew.Repositories
 {
     public interface IOrdersRepo
     {
-        void AddOrders(Order orders);
-        void DeleteOrders(int ordersId);
-        IEnumerable<Order> GetAllOrders();
-        List<Order> GetAllOrdersByUser(User customer);
-        Order GetOrderById(int orderId);
-        void UpdateOrders(Order order);
+        public void AddOrders(Order orders);
+        public void DeleteOrders(int ordersId);
+        public IEnumerable<Order> GetAllOrders();
+        public List<Order> GetAllOrdersByUser(User customer);
+        public Order GetOrderById(int orderId);
+        public void UpdateOrders(Order order);
     }
 }
