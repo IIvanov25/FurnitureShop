@@ -11,7 +11,7 @@ namespace FurnitureShopNew.Controllers
 
         public CategoriesController()
         {
-
+            
         }
 
         public IActionResult Index()
