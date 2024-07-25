@@ -1,13 +1,14 @@
-﻿using FurnitureShopNew.Models;
+﻿﻿using FurnitureShopNew.Models;
 
 namespace FurnitureShopNew.Repositories
 {
     public interface ICategoriesRepo
     {
-        IEnumerable<FurnitureTypeCategory> GetAllCategories();
+        List<FurnitureTypeCategory> GetAllCategories();
         FurnitureTypeCategory GetCategoryById(int id);
+        FurnitureTypeCategory GetCategoryByName(string name);
         void AddCategory(FurnitureTypeCategory category);
-        void UpdateCategory(FurnitureTypeCategory categoryOld, FurnitureTypeCategory categoryNew);
+        void UpdateCategory(FurnitureTypeCategory oldcategory, FurnitureTypeCategory newcategory);
         void DeleteCategory(FurnitureTypeCategory category);
     }
 }

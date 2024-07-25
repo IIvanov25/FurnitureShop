@@ -1,32 +1,71 @@
-﻿using FurnitureShopNew.Models;
+﻿﻿using FurnitureShopNew.Models;
 
 namespace FurnitureShopNew.Repositories
 {
     public class CategoriesRepo : ICategoriesRepo
     {
-        void ICategoriesRepo.AddCategory(FurnitureTypeCategory category)
+        private readonly ShopDbContext _context;
+
+        public CategoriesRepo(ShopDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        
+        List<string> GetAllCategories()
+        {
+            return _context.Categories.ToList();
         }
 
-        void ICategoriesRepo.DeleteCategory(FurnitureTypeCategory category)
-        {
-            throw new NotImplementedException();
-        }
+        public void AddCategory(FurnitureTypeCategory category)
+{
+     if(!_context.Categories.Contains(c => c.Name == name))
+{
+    _context.Categories.Add(category);
+}
+     else throw new ArgumentException($"Category with name - {category.name} already exists.");
+}
 
-        IEnumerable<FurnitureTypeCategory> ICategoriesRepo.GetAllCategories()
-        {
-            throw new NotImplementedException();
-        }
 
-        FurnitureTypeCategory ICategoriesRepo.GetCategoryById(int id)
-        {
-            throw new NotImplementedException();
-        }
+public void UpdateCategory(FurnitureTypeCategory oldcategory, FurnitureTypeCategory newcategory)
+{
+    try
+{
+    _context.Categories.Remove(oldcategory);
+    _context.Categories.Add(newcategory);
+}
+    catch(Exception)
+{
+    throw new Exception("Error in removing old category.");
+}
+}
 
-        void ICategoriesRepo.UpdateCategory(FurnitureTypeCategory categoryold, FurnitureTypeCategory categorynew)
+public void DeleteCategory(FurnitureTypeCategory category)
+{
+     if(_context.Categories.Contains(c => c.Name == name))
+{
+    _context.Categories.Remove(category);
+}
+     else throw new ArgumentException($"Category with name - {category.name} doesn't exist.");
+}
+
+        FurnitureTypeCategory GetCategoryById(int id)
         {
-            throw new NotImplementedException();
+            if (_context.Categories.Contains(c => c.Id == id))
+            {
+                return _context.Categories.Where(c => c.Id == id);
+            }
+            else
+            {
+                throw new IndexOutOfRangeException($"Invalid index - {id}.");
+            }
+        }
+        FurnitureTypeCategory GetCategoryByName(string name)
+        {
+            if (_context.Categories.Contains(c => c.Name == name))
+            {
+                return _context.Categories.Where(c => c.Name == name);
+            }
+            catch new ArgumentException{$"Invalid category name - {name}."}
         }
     }
 }
