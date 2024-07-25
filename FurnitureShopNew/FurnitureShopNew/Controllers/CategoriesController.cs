@@ -29,7 +29,8 @@ namespace FurnitureShopNew.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-        [HttpGet("getCategoryById")]
+
+        [HttpGet("getCategoryById-{id}")]
         public async Task<IActionResult> GetCategoryById(int id)
         {
             try
@@ -43,7 +44,7 @@ namespace FurnitureShopNew.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-        [HttpGet("getCategoryByName")]
+        [HttpGet("getCategoryByName-{name}")]
         public async Task<IActionResult> GetCategoryByName(string name)
         {
             try
