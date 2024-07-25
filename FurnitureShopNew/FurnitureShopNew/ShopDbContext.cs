@@ -36,6 +36,10 @@ namespace FurnitureShopNew.Models
 
             // Configure Cart entity
             modelBuilder.Entity<Cart>()
+                .Property(u => u.CartId)
+                .HasConversion<int>();
+
+            modelBuilder.Entity<Cart>()
                 .HasOne(c => c.User)
                 .WithOne(u => u.Cart)
                 .HasForeignKey<Cart>(c => c.UserId);
@@ -63,6 +67,10 @@ namespace FurnitureShopNew.Models
                 .HasForeignKey(ci => ci.ProductId);
 
             // Configure Product
+            modelBuilder.Entity<Product>()
+                .Property(p => p.Price)
+                .HasColumnType("decimal(18,2)");
+
             modelBuilder.Entity<Product>()
                 .Property(p => p.FurnitureTypeCategoryId)
                 .HasConversion<int>();

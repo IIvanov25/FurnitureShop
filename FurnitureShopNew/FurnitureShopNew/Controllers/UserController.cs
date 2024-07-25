@@ -16,9 +16,9 @@ namespace FurnitureShopNew.Controllers
         }
 
         [HttpPost("signup")]
-        public async Task<IActionResult> SignUp([FromBody] UserSignUpDTO userSignUpDTO)
+        public async Task<IActionResult> SignUp([FromBody] UserSignUpDTO UserSignUpDTO)
         {
-            if (userSignUpDTO == null)
+            if (UserSignUpDTO == null)
             {
                 return BadRequest("User data is null");
             }
@@ -26,12 +26,12 @@ namespace FurnitureShopNew.Controllers
             try
             {
                 await _userService.HandleSignUpAsync(
-                    userSignUpDTO.UserName,
-                    userSignUpDTO.FirstName,
-                    userSignUpDTO.LastName,
-                    userSignUpDTO.Email,
-                    userSignUpDTO.PhoneNumber,
-                    userSignUpDTO.Password
+                    UserSignUpDTO.UserName,
+                    UserSignUpDTO.FirstName,
+                    UserSignUpDTO.LastName,
+                    UserSignUpDTO.Email,
+                    UserSignUpDTO.PhoneNumber,
+                    UserSignUpDTO.Password
                 );
 
                 return Ok("User created successfully!");

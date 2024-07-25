@@ -9,12 +9,14 @@ using System.Text;
 public class UserService : IUserService
 {
     private readonly ShopDbContext _context;
+    private readonly IUserRepo _userRepo;
     private readonly IConfiguration _configuration;
 
-    public UserService(ShopDbContext context, IConfiguration configuration)
+    public UserService(ShopDbContext context, IConfiguration configuration, IUserRepo userRepo)
     {
         _context = context;
         _configuration = configuration;
+        _userRepo = userRepo;
     }
 
     public async Task<bool> HandleSignUpAsync(string username, string firstName, string lastName, string email, string phoneNumber, string password)
@@ -27,20 +29,19 @@ public class UserService : IUserService
             return false;
         }
 
-
         var user = new User
         {
             Username = username,
+            Password = password,
             FirstName = firstName,
             LastName = lastName,
             Email = email,
             PhoneNumber = phoneNumber,
-            Password = password,
             Role = UserType.Client
         };
 
-        _context.Users.Add(user);
-        await _context.SaveChangesAsync();
+        await _userRepo.AddUserAsync(user);
+        _context.SaveChanges();
         return true;
     }
 
