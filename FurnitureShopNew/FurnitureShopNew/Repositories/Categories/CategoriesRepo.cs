@@ -4,29 +4,69 @@ namespace FurnitureShopNew.Repositories
 {
     public class CategoriesRepo : ICategoriesRepo
     {
-        void ICategoriesRepo.AddCategory(FurnitureTypeCategory category)
+        private readonly ShopDbContext _context;
+
+        public CategoriesRepo(ShopDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        void ICategoriesRepo.DeleteCategory(FurnitureTypeCategory category)
+        public List<FurnitureTypeCategory> GetAllCategories()
         {
-            throw new NotImplementedException();
+            return _context.FurnitureTypeCategories.ToList();
         }
 
-        IEnumerable<FurnitureTypeCategory> ICategoriesRepo.GetAllCategories()
+        public void AddCategory(FurnitureTypeCategory category)
         {
-            throw new NotImplementedException();
+            if (!_context.FurnitureTypeCategories.Contains(category))
+            {
+                _context.FurnitureTypeCategories.Add(category);
+            }
+            else throw new ArgumentException($"Category with name - {category.CategoryName} already exists.");
         }
 
-        FurnitureTypeCategory ICategoriesRepo.GetCategoryById(int id)
+
+        public void UpdateCategory(FurnitureTypeCategory oldcategory, FurnitureTypeCategory newcategory)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.FurnitureTypeCategories.Remove(oldcategory);
+                _context.FurnitureTypeCategories.Add(newcategory);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error in removing old category.");
+            }
         }
 
-        void ICategoriesRepo.UpdateCategory(FurnitureTypeCategory categoryold, FurnitureTypeCategory categorynew)
+        public void DeleteCategory(FurnitureTypeCategory category)
         {
-            throw new NotImplementedException();
+            if (_context.FurnitureTypeCategories.Contains(category))
+            {
+                _context.FurnitureTypeCategories.Remove(category);
+            }
+            else throw new ArgumentException($"Category with name - {category.CategoryName} doesn't exist.");
+        }
+
+        public FurnitureTypeCategory GetCategoryById(int id)
+        {
+            if (_context.FurnitureTypeCategories.Count() < id && id >= 0)
+            {
+                return _context.FurnitureTypeCategories.FirstOrDefault(c => c.FurnitureTypeCategoryId == id);
+            }
+            else
+            {
+                throw new IndexOutOfRangeException($"Invalid index - {id}.");
+            }
+        }
+        public FurnitureTypeCategory GetCategoryByName(string name)
+        {
+            var category = _context.FurnitureTypeCategories.FirstOrDefault(c => c.CategoryName == name);
+            if (_context.FurnitureTypeCategories.Contains(category))
+            {
+                return _context.FurnitureTypeCategories.FirstOrDefault(c => c.CategoryName == name);
+            }
+            else throw new ArgumentException($"Invalid category name - {name}.");
         }
     }
 }

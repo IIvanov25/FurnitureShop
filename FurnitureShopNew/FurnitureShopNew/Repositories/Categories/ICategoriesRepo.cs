@@ -4,10 +4,11 @@ namespace FurnitureShopNew.Repositories
 {
     public interface ICategoriesRepo
     {
-        IEnumerable<FurnitureTypeCategory> GetAllCategories();
-        FurnitureTypeCategory GetCategoryById(int id);
-        void AddCategory(FurnitureTypeCategory category);
-        void UpdateCategory(FurnitureTypeCategory categoryOld, FurnitureTypeCategory categoryNew);
-        void DeleteCategory(FurnitureTypeCategory category);
+        public List<FurnitureTypeCategory> GetAllCategories();
+        public FurnitureTypeCategory GetCategoryById(int id);
+        public FurnitureTypeCategory GetCategoryByName(string name);
+        public void AddCategory(FurnitureTypeCategory category);
+        public void UpdateCategory(FurnitureTypeCategory categoryOld, FurnitureTypeCategory categoryNew);
+        public void DeleteCategory(FurnitureTypeCategory category);
     }
 }
