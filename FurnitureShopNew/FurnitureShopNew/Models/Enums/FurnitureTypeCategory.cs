@@ -1,10 +1,8 @@
 namespace FurnitureShopNew.Models
 {
-    private List<string> _categories;
-
         public FurnitureTypeCategory()
         {
-            _categories = new List<string>
+            public List<string> categories new List<string>
             {
                 "Chair",
                 "Table",
