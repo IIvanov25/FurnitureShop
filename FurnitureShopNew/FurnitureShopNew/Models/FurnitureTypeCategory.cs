@@ -11,13 +11,14 @@ namespace FurnitureShopNew.Models
         [Required]
         public string CategoryName { get; set; }
 
+        [Required]
         [ForeignKey("RoomCategoryId")]
         public virtual RoomCategory RoomCategory { get; set; }
-
         public virtual ICollection<Product> Products { get; set; }
         public FurnitureTypeCategory()
         {
             Products = new HashSet<Product>();
+            RoomCategory = new RoomCategory();
         }
     }
 }

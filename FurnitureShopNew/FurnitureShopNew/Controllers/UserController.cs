@@ -52,20 +52,21 @@ namespace FurnitureShopNew.Controllers
 
             try
             {
-                var token = await _userService.AuthenticateUserAsync(userLoginDTO.UserName, userLoginDTO.Password);
+                var isAuthenticated = await _userService.AuthenticateUserAsync(userLoginDTO.UserName, userLoginDTO.Password);
 
-                if (string.IsNullOrEmpty(token))
+                if (!isAuthenticated)
                 {
                     return Unauthorized("Invalid username or password");
                 }
 
-                return Ok(new { Token = token });
+                return Ok("Login successful");
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
 
         [HttpGet("getAllUsers")]
         public async Task<IActionResult> GetAllUsers()

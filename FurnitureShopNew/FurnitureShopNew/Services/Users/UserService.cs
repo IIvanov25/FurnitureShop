@@ -45,34 +45,18 @@ public class UserService : IUserService
         return true;
     }
 
-    public async Task<string> AuthenticateUserAsync(string username, string password)
+    public async Task<bool> AuthenticateUserAsync(string username, string password)
     {
-        var user = await _context.Users
-            .FirstOrDefaultAsync(u => u.Username == username);
+        var user = await _userRepo.GetUserByUsernameAsync(username);
 
-        if (user == null || password != user.Password)
+        if (user == null || user.Password != password)
         {
-            return null;
+            return false;
         }
 
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Secret"]);
-        var tokenDescriptor = new SecurityTokenDescriptor
-        {
-            Subject = new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Email, user.Email)
-            }),
-            Expires = DateTime.UtcNow.AddMinutes(Convert.ToDouble(_configuration["Jwt:ExpiryMinutes"])),
-            Issuer = _configuration["Jwt:Issuer"],
-            Audience = _configuration["Jwt:Audience"],
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-        };
-
-        var token = tokenHandler.CreateToken(tokenDescriptor);
-        return tokenHandler.WriteToken(token);
+        return true;
     }
+
 
     public async Task<IEnumerable<User>> GetAllUsersAsync()
     {

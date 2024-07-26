@@ -8,15 +8,13 @@ namespace FurnitureShopNew.Models
         public ShopDbContext(DbContextOptions<ShopDbContext> options) : base(options)
         {
         }
-
         public DbSet<User> Users { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
-        public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<RoomCategory> RoomCategories { get; set; }
         public DbSet<FurnitureTypeCategory> FurnitureTypeCategories { get; set; }
-
+        public DbSet<RoomCategory> RoomCategories { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -67,6 +65,11 @@ namespace FurnitureShopNew.Models
                 .HasForeignKey(ci => ci.ProductId);
 
             // Configure Product
+            modelBuilder.Entity<Product>()
+                .HasOne(p=>p.FurnitureTypeCategory)
+                .WithMany()
+                .HasForeignKey(p => p.FurnitureTypeCategoryId);
+
             modelBuilder.Entity<Product>()
                 .Property(p => p.Price)
                 .HasColumnType("decimal(18,2)");

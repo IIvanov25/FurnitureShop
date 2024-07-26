@@ -20,10 +20,10 @@ namespace FurnitureShopNew
 
             builder.Services.AddScoped<IUserRepo, UserRepo>();
             builder.Services.AddScoped<IUserService, UserService>();
-            builder.Services.AddScoped<IOrdersRepo, OrdersRepo>();
-            builder.Services.AddScoped<IOrdersService, OrdersService>();
             builder.Services.AddScoped<IProductRepo, ProductRepo>();
             builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IOrdersRepo, OrdersRepo>();
+            builder.Services.AddScoped<IOrdersService, OrdersService>();
             builder.Services.AddScoped<ICartRepo,CartRepo>();
             builder.Services.AddScoped<ICartService,CartService>();
             
@@ -39,6 +39,27 @@ namespace FurnitureShopNew
                           .AllowAnyHeader();
                 });
             });
+
+            //builder.Services.AddAuthentication(options =>
+            //{
+            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //})
+            //.AddJwtBearer(options =>
+            //{
+            //    options.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        ValidateIssuer = true,
+            //        ValidateAudience = true,
+            //        ValidateLifetime = true,
+            //        ValidateIssuerSigningKey = true,
+            //        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            //        ValidAudience = builder.Configuration["Jwt:Audience"],
+            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Secret"]))
+            //    };
+            //});
+
+
 
             var app = builder.Build();
 
@@ -57,7 +78,7 @@ namespace FurnitureShopNew
             // Use CORS policy
             app.UseCors("AllowAll");
 
-            app.UseAuthorization();
+            app.UseAuthentication();
 
             app.MapRazorPages();
             app.MapControllers(); // Map API controllers

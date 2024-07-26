@@ -52,5 +52,9 @@ namespace FurnitureShopNew.Repositories
                 throw new InvalidOperationException("Failed to find user", ex);
             }
         }
+        public async Task<User> GetUserByUsernameAsync(string username)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+        }
     }
 }

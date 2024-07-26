@@ -1,13 +1,12 @@
 ﻿using FurnitureShopNew.DTOs;
-using FurnitureShopNew.Models;
-using FurnitureShopNew.Services;
 using Microsoft.AspNetCore.Mvc;
+using StackExchange.Profiling.Internal;
 
 namespace FurnitureShopNew.Controllers
 {
     [Route("product")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductController : Controller
     {
         private readonly IProductService _productService;
 
@@ -17,26 +16,16 @@ namespace FurnitureShopNew.Controllers
         }
 
         [HttpGet("getAllProducts")]
-        public async Task<IActionResult> GetAllProducts()
+        public async Task<IActionResult> GetAllProductsAsync()
         {
             try
             {
                 var products = await _productService.GetAllProductsAsync();
-
-                var productDtos = products.Select(p => new GetAllProductsDTO(
-                    p.ProductId,
-                    p.Name,
-                    p.ImageUrl,
-                    p.Description,
-                    p.Price,
-                    p.StockQuantity,
-                    p.FurnitureTypeCategoryId
-                )).ToList();
-
-                return Ok(productDtos);
+                return Ok(products);
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return StatusCode(500, "Internal server error");
             }
         }

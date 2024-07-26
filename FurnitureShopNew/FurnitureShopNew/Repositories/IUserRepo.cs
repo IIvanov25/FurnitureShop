@@ -5,5 +5,6 @@
         Task AddUserAsync(User user);
         Task DeleteUserEmailAsync(string email);
         Task<User> FindByEmailAsync(string email);
+        Task<User> GetUserByUsernameAsync(string username);
     }
 }

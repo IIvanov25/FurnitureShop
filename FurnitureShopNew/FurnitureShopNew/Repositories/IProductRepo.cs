@@ -4,7 +4,7 @@ namespace FurnitureShopNew.Repositories
 {
     public interface IProductRepo
     {
-        IEnumerable<Product> GetAllProducts();
+        Task<IEnumerable<Product>> GetAllProductsAsync();
         Product GetProductById(int id);
         void AddProduct(Product product);
         void UpdateProduct(Product product);

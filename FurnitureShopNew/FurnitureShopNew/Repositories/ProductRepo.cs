@@ -1,4 +1,5 @@
 ﻿using FurnitureShopNew.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FurnitureShopNew.Repositories
 {
@@ -11,37 +12,36 @@ namespace FurnitureShopNew.Repositories
             _context = context;
         }
 
-        void IProductRepo.AddProduct(Product product)
+        public void AddProduct(Product product)
         {
             throw new NotImplementedException();
         }
 
-        void IProductRepo.DeleteProduct(Product product)
+        public void DeleteProduct(Product product)
         {
             throw new NotImplementedException();
         }
 
-        IEnumerable<Product> IProductRepo.GetAllProducts()
+        public async Task<IEnumerable<Product>> GetAllProductsAsync()
+        {
+            return await _context.Products.ToListAsync();
+        }
+        public Product GetProductById(int id)
         {
             throw new NotImplementedException();
         }
 
-        Product IProductRepo.GetProductById(int id)
+        public int GetQuantityById(int id)
         {
             throw new NotImplementedException();
         }
 
-        int IProductRepo.GetQuantityById(int id)
+        public List<Product> SearchProductByCategory(int id)
         {
             throw new NotImplementedException();
         }
 
-        List<Product> IProductRepo.SearchProductByCategory(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IProductRepo.UpdateProduct(Product product)
+        public void UpdateProduct(Product product)
         {
             throw new NotImplementedException();
         }

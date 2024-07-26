@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FurnitureShopNew.Models
 {
@@ -12,8 +11,10 @@ namespace FurnitureShopNew.Models
         [MaxLength(100)]
         public string Name { get; set; }
 
+        [Required]
         public string ImageUrl { get; set; }
 
+        [Required]
         [MaxLength(500)]
         public string Description { get; set; }
 
@@ -27,11 +28,9 @@ namespace FurnitureShopNew.Models
         [Required]
         public int FurnitureTypeCategoryId { get; set; }
 
-        // Navigation Property
-        public virtual FurnitureTypeCategory FurnitureTypeCategory { get; set; }
+        [Required]
+        public FurnitureTypeCategory FurnitureTypeCategory { get; set; }
 
-        public Product()
-        {
-        }
+        public Product() {}
     }
 }

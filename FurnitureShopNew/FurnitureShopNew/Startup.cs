@@ -25,7 +25,7 @@ namespace FurnitureShopNew
 
             // Configure the DbContext with a connection string
             services.AddDbContext<ShopDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("Data Source=MONI;Initial Catalog=FurnitureShop;Integrated Security=True;Encrypt=True;Trust Server Certificate=True")));
+                options.UseSqlServer(Configuration.GetConnectionString("Data Source=DESKTOP-D6DTHKQ;Initial Catalog=FurnitureShop;Integrated Security=True;Encrypt=True;Trust Server Certificate=True")));
 
             // Register repositories and services for dependency injection
             services.AddScoped<IProductRepo, ProductRepo>();
