@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace FurnitureShopNew.Models
@@ -9,15 +9,15 @@ namespace FurnitureShopNew.Models
         public int FurnitureTypeCategoryId { get; set; }
 
         [Required]
-        public string Name{ get; set; }
+        public string Name { get; set; }
 
-        [Required]
-        public string Description { get; set; }
-
+        public virtual ICollection<RoomCategory> RoomCategories { get; set; }
         public virtual ICollection<Product> Products { get; set; }
+
         public FurnitureTypeCategory()
         {
             Products = new HashSet<Product>();
+            RoomCategories = new HashSet<RoomCategory>();
         }
     }
 }

@@ -1,7 +1,9 @@
+﻿using FurnitureShopNew;
 using FurnitureShopNew.Models;
 using FurnitureShopNew.Repositories;
 using FurnitureShopNew.Services;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -11,12 +13,12 @@ using System.Threading.Tasks;
 public class UserService : IUserService
 {
     private readonly IUserRepo _userRepo;
-    private readonly IConfiguration _configuration;
+    private readonly JwtSetting _jwtSettings;
 
-    public UserService(IUserRepo userRepo, IConfiguration configuration)
+    public UserService(IUserRepo userRepo, IOptions<JwtSetting> jwtSettings)
     {
         _userRepo = userRepo;
-        _configuration = configuration;
+        _jwtSettings = jwtSettings.Value;
     }
 
     public async Task<bool> HandleSignUpAsync(string username, string firstName, string lastName, string email, string phoneNumber, string password)
@@ -39,31 +41,36 @@ public class UserService : IUserService
 
     public async Task<string> AuthenticateUserAsync(string username, string password)
     {
+        // Извличане на потребител от репозитория
         var user = await _userRepo.GetUserByUsernameAsync(username);
 
+        // Проверка на потребителските данни
         if (user == null || user.Password != password)
         {
-            return null; 
+            return null; // Връща null, ако потребителят не съществува или паролата не съвпада
         }
 
+        // Създаване на токен
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Secret"]);
+        var key = Encoding.UTF8.GetBytes(_jwtSettings.Key); 
+
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new[]
             {
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Email, user.Email)
-            }),
-            Expires = DateTime.UtcNow.AddMinutes(Convert.ToDouble(_configuration["Jwt:ExpiryMinutes"])),
-            Issuer = _configuration["Jwt:Issuer"],
-            Audience = _configuration["Jwt:Audience"],
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            new Claim(ClaimTypes.Name, user.Username),
+            new Claim(ClaimTypes.Email, user.Email)
+        }),
+            Expires = DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiryMinutes),
+            Issuer = _jwtSettings.Issuer,
+            Audience = _jwtSettings.Audience,
+            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature) 
         };
 
-        var token = tokenHandler.CreateToken(tokenDescriptor);
-        return tokenHandler.WriteToken(token);
+        var token = tokenHandler.CreateToken(tokenDescriptor); 
+        return tokenHandler.WriteToken(token); 
     }
+
 
     public async Task<IEnumerable<User>> GetAllUsersAsync()
     {

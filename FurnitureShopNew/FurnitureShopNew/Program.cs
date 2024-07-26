@@ -1,38 +1,59 @@
+﻿using FurnitureShopNew;
 using FurnitureShopNew.Models;
-using Jose;
+using FurnitureShopNew.Repositories;
+using FurnitureShopNew.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace FurnitureShopNew
+public class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        var builder = WebApplication.CreateBuilder(args);
+
+        // Регистрирай услугите
+        builder.Services.AddDbContext<ShopDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+        builder.Services.AddScoped<IUserRepo, UserRepo>();
+        builder.Services.AddScoped<IUserService, UserService>();
+
+        // Конфигуриране на JwtSettings
+        builder.Services.Configure<JwtSetting>(builder.Configuration.GetSection("Jwt"));
+
+        // Настройка на удостоверяване
+        builder.Services.AddAuthentication(options =>
         {
-            var builder = WebApplication.CreateBuilder(args);
-
-            builder.Services.AddRazorPages();
-
-            var app = builder.Build();
-
-            if (!app.Environment.IsDevelopment())
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddJwtBearer(options =>
+        {
+            var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSetting>();
+            options.TokenValidationParameters = new TokenValidationParameters
             {
-                app.UseExceptionHandler("/Error");
-                app.UseHsts();
-            }
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = jwtSettings.Issuer,
+                ValidAudience = jwtSettings.Audience,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)) 
+            };
+        });
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
+        var app = builder.Build();
 
-            app.UseRouting();
+        // Конфигурация на приложението
+        app.UseHttpsRedirection();
+        app.UseRouting();
+        app.UseAuthentication();
+        app.UseAuthorization();
 
-            app.UseAuthorization();
+        app.MapControllers();
 
-            app.MapRazorPages();
-
-            app.Run();
-        }
+        app.Run();
     }
 }

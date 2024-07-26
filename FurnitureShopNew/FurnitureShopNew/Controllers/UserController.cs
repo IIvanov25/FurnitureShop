@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FurnitureShopNew.Controllers
 {
+    [Authorize]
     [Route("user")]
     [ApiController]
     public class UserController : Controller
@@ -49,7 +50,6 @@ namespace FurnitureShopNew.Controllers
             {
                 return BadRequest("User login data is null");
             }
-
             try
             {
                 var token = await _userService.AuthenticateUserAsync(userLoginDTO.UserName, userLoginDTO.Password);

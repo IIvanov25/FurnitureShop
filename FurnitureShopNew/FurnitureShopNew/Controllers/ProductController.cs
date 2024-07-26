@@ -30,7 +30,6 @@ namespace FurnitureShopNew.Controllers
                     p.Description,
                     p.Price,
                     p.StockQuantity,
-                    p.RoomCategories.Select(rc => rc.ToString()).ToList(), 
                     p.FurnitureTypeCategories.Select(ftc => ftc.ToString()).ToList() 
                 )).ToList();
 
@@ -112,6 +111,5 @@ namespace FurnitureShopNew.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-
     }
 }

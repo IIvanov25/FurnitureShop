@@ -6,12 +6,15 @@ namespace FurnitureShopNew.Models
     {
         public ShopDbContext(DbContextOptions<ShopDbContext> options) : base(options)
         {
+
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<FurnitureTypeCategory> FurnitureTypeCategories { get; set; }
+        public DbSet<RoomCategory> RoomCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -58,14 +61,41 @@ namespace FurnitureShopNew.Models
                 .WithMany()
                 .HasForeignKey(ci => ci.ProductId);
 
-            // Configure Product entity with enums
             modelBuilder.Entity<Product>()
-                .Property(p => p.RoomCategories)
-                .HasConversion<int>();
+               .HasMany(p => p.FurnitureTypeCategories)
+               .WithMany(f => f.Products)
+               .UsingEntity<Dictionary<string, object>>(
+                  "ProductFurnitureTypeCategory",
+             j => j
+               .HasOne<FurnitureTypeCategory>()
+               .WithMany()
+               .HasForeignKey("FurnitureTypeCategoryId")
+               .OnDelete(DeleteBehavior.Cascade),
+            j => j
+                .HasOne<Product>()
+                .WithMany()
+                .HasForeignKey("ProductId")
+                .OnDelete(DeleteBehavior.Cascade));
 
-            modelBuilder.Entity<Product>()
-                .Property(p => p.FurnitureTypeCategories)
-                .HasConversion<int>();
+            // Configure many-to-many relationship between FurnitureTypeCategory and RoomCategory
+            modelBuilder.Entity<FurnitureTypeCategory>()
+                .HasMany(f => f.RoomCategories)
+                .WithMany(r => r.FurnitureTypeCategories)
+                .UsingEntity<Dictionary<string, object>>(
+                    "FurnitureTypeCategoryRoomCategory",
+                    j => j
+                        .HasOne<RoomCategory>()
+                        .WithMany()
+                        .HasForeignKey("RoomCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade),
+                    j => j
+                        .HasOne<FurnitureTypeCategory>()
+                        .WithMany()
+                        .HasForeignKey("FurnitureTypeCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade));
+
+            //configure RoomCategory entity
+            //modelBuilder.Entity<RoomCategory>()
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FurnitureShopNew.Models
 {
@@ -9,11 +10,14 @@ namespace FurnitureShopNew.Models
 
         [Required]
         public string Name { get; set; }
+
         public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<FurnitureTypeCategory> FurnitureTypeCategories { get; set; }
 
         public RoomCategory()
         {
             Products = new HashSet<Product>();
+            FurnitureTypeCategories = new HashSet<FurnitureTypeCategory>();
         }
     }
 }
