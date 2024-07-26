@@ -1,6 +1,4 @@
 ﻿using FurnitureShopNew.DTOs;
-using FurnitureShopNew.Models;
-using FurnitureShopNew.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FurnitureShopNew.Controllers
@@ -30,8 +28,8 @@ namespace FurnitureShopNew.Controllers
                     p.Description,
                     p.Price,
                     p.StockQuantity,
-                    p.RoomCategories.Select(rc => rc.ToString()).ToList(), 
-                    p.FurnitureTypeCategories.Select(ftc => ftc.ToString()).ToList() 
+                    p.RoomCategoryId,
+                    p.FurnitureTypeCategoryId
                 )).ToList();
 
                 return Ok(productDtos);
@@ -101,8 +99,8 @@ namespace FurnitureShopNew.Controllers
                     product.Description,
                     product.Price,
                     product.StockQuantity,
-                    product.RoomCategories.Select(rc => rc.ToString()).ToList(),
-                    product.FurnitureTypeCategories.Select(ftc => ftc.ToString()).ToList()
+                    product.RoomCategoryId,
+                    product.FurnitureTypeCategoryId
                 );
 
                 return Ok(productDto);

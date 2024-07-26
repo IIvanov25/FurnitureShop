@@ -21,14 +21,13 @@ namespace FurnitureShopNew.Models
 
         [Required]
         public int StockQuantity { get; set; }
-
-        public virtual ICollection<RoomCategory> RoomCategories { get; set; }
-        public virtual ICollection<FurnitureTypeCategory> FurnitureTypeCategories { get; set; }
+        [Required]
+        public int FurnitureTypeCategoryId { get; set; }
+        [Required]
+        public int RoomCategoryId { get; set; }
 
         public Product()
         {
-            RoomCategories = new HashSet<RoomCategory>();
-            FurnitureTypeCategories = new HashSet<FurnitureTypeCategory>();
         }
     }
 }

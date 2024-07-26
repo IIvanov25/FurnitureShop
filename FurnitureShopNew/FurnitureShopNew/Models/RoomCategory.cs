@@ -8,7 +8,7 @@ namespace FurnitureShopNew.Models
         public int RoomCategoryId { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string RoomCategoryName { get; set; }
         public virtual ICollection<Product> Products { get; set; }
 
         public RoomCategory()

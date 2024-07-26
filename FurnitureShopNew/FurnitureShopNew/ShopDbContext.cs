@@ -12,6 +12,8 @@ namespace FurnitureShopNew.Models
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<FurnitureTypeCategory> FurnitureTypeCategories { get; set; }
+        public DbSet<RoomCategory> RoomCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -60,11 +62,11 @@ namespace FurnitureShopNew.Models
 
             // Configure Product entity with enums
             modelBuilder.Entity<Product>()
-                .Property(p => p.RoomCategories)
+                .Property(p => p.RoomCategoryId)
                 .HasConversion<int>();
 
             modelBuilder.Entity<Product>()
-                .Property(p => p.FurnitureTypeCategories)
+                .Property(p => p.FurnitureTypeCategoryId)
                 .HasConversion<int>();
         }
     }
