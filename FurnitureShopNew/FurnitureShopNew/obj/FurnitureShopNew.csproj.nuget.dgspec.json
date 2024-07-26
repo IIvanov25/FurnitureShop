@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ivan Ivanov\\Desktop\\ResettedMainFiles\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {}
+    "C:\\ProjectsTest\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ivan Ivanov\\Desktop\\ResettedMainFiles\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {
+    "C:\\ProjectsTest\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ivan Ivanov\\Desktop\\ResettedMainFiles\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
+        "projectUniqueName": "C:\\ProjectsTest\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
         "projectName": "FurnitureShopNew",
-        "projectPath": "C:\\Users\\Ivan Ivanov\\Desktop\\ResettedMainFiles\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
-        "packagesPath": "C:\\Users\\Ivan Ivanov\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ivan Ivanov\\Desktop\\ResettedMainFiles\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\obj\\",
+        "projectPath": "C:\\ProjectsTest\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\FurnitureShopNew.csproj",
+        "packagesPath": "C:\\Users\\dania\\.nuget\\packages\\",
+        "outputPath": "C:\\ProjectsTest\\FurnitureShop\\FurnitureShopNew\\FurnitureShopNew\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Ivan Ivanov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dania\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

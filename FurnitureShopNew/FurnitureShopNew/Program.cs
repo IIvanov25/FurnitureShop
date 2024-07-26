@@ -1,6 +1,7 @@
 using FurnitureShopNew.Models;
 using FurnitureShopNew.Repositories;
 using FurnitureShopNew.Services;
+using Jose;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -23,7 +24,7 @@ namespace FurnitureShopNew
 
             builder.Services.AddDbContext<ShopDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-           .EnableSensitiveDataLogging() 
+           .EnableSensitiveDataLogging()
            .LogTo(Console.WriteLine, LogLevel.Information));
 
             builder.Services.AddScoped<IUserRepo, UserRepo>();
@@ -47,6 +48,25 @@ namespace FurnitureShopNew
                 });
             });
 
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+ .AddJwtBearer(options =>
+ {
+     var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSetting>();
+     options.TokenValidationParameters = new TokenValidationParameters
+     {
+         ValidateIssuer = true,
+         ValidateAudience = true,
+         ValidateLifetime = true,
+         ValidateIssuerSigningKey = true,
+         ValidIssuer = jwtSettings.Issuer,
+         ValidAudience = jwtSettings.Audience,
+         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key))
+     };
+ });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

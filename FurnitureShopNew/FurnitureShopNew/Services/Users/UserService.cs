@@ -1,27 +1,28 @@
 using FurnitureShopNew.Models;
 using FurnitureShopNew.Repositories;
-using FurnitureShopNew.Services;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using FurnitureShopNew.Services;
+using FurnitureShopNew;
 
 public class UserService : IUserService
 {
     private readonly IUserRepo _userRepo;
-    private readonly IConfiguration _configuration;
+    private readonly JwtSetting _jwtSettings;
 
-    public UserService(IUserRepo userRepo, IConfiguration configuration)
+    public UserService(IUserRepo userRepo, IOptions<JwtSetting> jwtSettings)
     {
         _userRepo = userRepo;
-        _configuration = configuration;
+        _jwtSettings = jwtSettings.Value;
     }
 
     public async Task<bool> HandleSignUpAsync(string username, string firstName, string lastName, string email, string phoneNumber, string password)
     {
-        
         var user = new User
         {
             Username = username,
@@ -29,7 +30,7 @@ public class UserService : IUserService
             LastName = lastName,
             Email = email,
             PhoneNumber = phoneNumber,
-            Password = password, 
+            Password = password,
             Role = UserType.Client
         };
 
@@ -40,14 +41,15 @@ public class UserService : IUserService
     public async Task<string> AuthenticateUserAsync(string username, string password)
     {
         var user = await _userRepo.GetUserByUsernameAsync(username);
-
+      
         if (user == null || user.Password != password)
         {
             return null; 
         }
 
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(s: _configuration["Jwt:Secret"]);
+        var key = Encoding.UTF8.GetBytes(_jwtSettings.Key);
+
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new[]
@@ -55,9 +57,9 @@ public class UserService : IUserService
                 new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.Email, user.Email)
             }),
-            Expires = DateTime.UtcNow.AddMinutes(Convert.ToDouble(_configuration["Jwt:ExpiryMinutes"])),
-            Issuer = _configuration["Jwt:Issuer"],
-            Audience = _configuration["Jwt:Audience"],
+            Expires = DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiryMinutes),
+            Issuer = _jwtSettings.Issuer,
+            Audience = _jwtSettings.Audience,
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
 
@@ -79,7 +81,7 @@ public class UserService : IUserService
 
         if (string.IsNullOrEmpty(username))
         {
-            return null; 
+            return null;
         }
 
         return await _userRepo.GetUserByUsernameAsync(username);
@@ -91,7 +93,7 @@ public class UserService : IUserService
 
         if (user == null)
         {
-            return false; 
+            return false;
         }
 
         await _userRepo.DeleteUserAsync(user);
