@@ -6,11 +6,11 @@ namespace FurnitureShopNew.Models
     {
         [Key]
         public int RoomCategoryId { get; set; }
-
         [Required]
         public string RoomCategoryName { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
 
+        [Required]
+        public virtual ICollection<Product> Products { get; set; }
         public RoomCategory()
         {
             Products = new HashSet<Product>();

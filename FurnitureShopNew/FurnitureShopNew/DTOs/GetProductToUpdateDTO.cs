@@ -9,8 +9,9 @@
         public decimal Price { get; set; }
         public int StockQuantity { get; set; }
         public int FurnitureTypeCategoryId { get; set; }
+        public int RoomCategoryId { get; set; }
 
-        public GetProductToUpdateDTO(int productId, string name, string imageUrl, string description, decimal price, int stockQuantity, int furnitureTypeCategoryId)
+        public GetProductToUpdateDTO(int productId, string name, string imageUrl, string description, decimal price, int stockQuantity, int furnitureTypeCategoryId, int roomCategoryId)
         {
             this.ProductId = productId;
             this.Name = name;
@@ -19,6 +20,7 @@
             this.Price = price;
             this.StockQuantity = stockQuantity;
             this.FurnitureTypeCategoryId = furnitureTypeCategoryId;
+            this.RoomCategoryId = roomCategoryId;
         }
     }
 }

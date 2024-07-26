@@ -7,6 +7,7 @@ namespace FurnitureShopNew.Controllers
     public class CategoriesController : Controller
     {
         private readonly FurnitureTypeCategory _categories;
+        private readonly RoomCategory _roomCategory;
         private readonly CategoriesRepo _categoriesRepo;
 
         public CategoriesController()

@@ -89,7 +89,8 @@ namespace FurnitureShopNew.Controllers
                     product.Description,
                     product.Price,
                     product.StockQuantity,
-                    product.FurnitureTypeCategoryId
+                    product.FurnitureTypeCategoryId,
+                    product.RoomCategoryId
                 );
 
                 return Ok(productDto);

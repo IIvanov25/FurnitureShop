@@ -1,7 +1,4 @@
-﻿using FurnitureShopNew.Models;
-using Org.BouncyCastle.Tls.Crypto;
-
-namespace FurnitureShopNew.DTOs
+﻿namespace FurnitureShopNew.DTOs
 {
     public class GetCurrentViewedProduct
     {

@@ -66,9 +66,12 @@ namespace FurnitureShopNew.Models
 
             // Configure Product
             modelBuilder.Entity<Product>()
-                .HasOne(p=>p.FurnitureTypeCategory)
-                .WithMany()
-                .HasForeignKey(p => p.FurnitureTypeCategoryId);
+                .Property(u => u.FurnitureTypeCategoryId)
+                .HasConversion<int>();
+
+            modelBuilder.Entity<Product>()
+                .Property (u => u.RoomCategoryId)
+                .HasConversion<int>();
 
             modelBuilder.Entity<Product>()
                 .Property(p => p.Price)

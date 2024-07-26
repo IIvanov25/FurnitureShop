@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FurnitureShopNew.Models
 {
@@ -26,10 +27,14 @@ namespace FurnitureShopNew.Models
 
         // Foreign Key
         [Required]
+        [MaxLength(100)]
+        [ForeignKey("FurnitureTypeCategoryId")]
         public int FurnitureTypeCategoryId { get; set; }
 
         [Required]
-        public FurnitureTypeCategory FurnitureTypeCategory { get; set; }
+        [MaxLength(100)]
+        [ForeignKey("RoomCategoryId")]
+        public int RoomCategoryId { get; set; }
 
         public Product() {}
     }
