@@ -32,7 +32,7 @@ namespace FurnitureShopNew.Models
         public string PhoneNumber { get; set; }
 
         [MaxLength(255)]
-        public string ProfilePicUrl { get; set; }
+        public string ProfilePicUrl { get; set; } = "default";
 
         [Required]
         public UserType Role { get; set; }
