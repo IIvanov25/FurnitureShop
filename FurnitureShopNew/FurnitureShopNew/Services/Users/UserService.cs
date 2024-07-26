@@ -47,7 +47,7 @@ public class UserService : IUserService
         }
 
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Secret"]);
+        var key = Encoding.ASCII.GetBytes(s: _configuration["Jwt:Secret"]);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new[]

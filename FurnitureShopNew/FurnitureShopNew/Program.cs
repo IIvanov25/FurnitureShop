@@ -18,8 +18,13 @@ namespace FurnitureShopNew
             builder.Services.AddRazorPages();
             builder.Services.AddControllers(); // Register API controllers
 
+            //builder.Services.AddDbContext<ShopDbContext>(options =>
+            //   options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
             builder.Services.AddDbContext<ShopDbContext>(options =>
-               options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+           .EnableSensitiveDataLogging() 
+           .LogTo(Console.WriteLine, LogLevel.Information));
 
             builder.Services.AddScoped<IUserRepo, UserRepo>();
             builder.Services.AddScoped<IUserService, UserService>();
